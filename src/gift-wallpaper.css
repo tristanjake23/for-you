@@ -131,3 +131,34 @@
   from { transform: translate3d(-3px, -3px, 0); }
   to { transform: translate3d(5px, 5px, 0); }
 }
+
+.cinema-edge {
+  position: absolute;
+  inset-inline: 0;
+  height: clamp(0.8rem, 3vw, 1.35rem);
+  background:
+    repeating-linear-gradient(90deg, transparent 0 7px, #f2dfbfb5 7px 17px, transparent 17px 28px) center / 100% 38% no-repeat,
+    linear-gradient(90deg, #6a383b, #82484b 50%, #67373b);
+  box-shadow: 0 0 1rem #67423662;
+}
+
+.cinema-edge-top { top: 0; }
+.cinema-edge-bottom { bottom: 0; }
+
+.cinema-corner {
+  position: absolute;
+  width: clamp(1.4rem, 5vw, 3.4rem);
+  aspect-ratio: 1;
+  border: solid #a66e605e;
+}
+
+.cinema-corner-left { left: 0.75rem; top: 1.75rem; border-width: 1px 0 0 1px; }
+.cinema-corner-right { right: 0.75rem; bottom: 1.75rem; border-width: 0 1px 1px 0; }
+
+.gift-wallpaper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 42%, #9363532b);
+  pointer-events: none;
+}

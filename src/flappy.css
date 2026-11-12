@@ -71,3 +71,14 @@
 
 .flappy-frame > p { margin: 0.7rem 0 0.2rem; text-align: center; font-size: 0.82rem; }
 .flappy-input:focus-visible { outline: 3px solid #fff6d8; outline-offset: -5px; }
+
+.flappy-field canvas {
+  background: #d4c7ee;
+}
+
+.flappy-input,
+.flappy-input:active {
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  background: transparent;
+}

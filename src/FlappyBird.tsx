@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
+import dogSprite from "./assets/flappy-dog.webp";
 import "./flappy.css";
 
 const width = 360;
 const height = 420;
 const ground = 390;
 const birdX = 84;
-const radius = 11;
+const radius = 14;
+const spriteSize = 42;
 const pipeWidth = 51;
 const gap = 137;
 const spacing = 177;
@@ -35,7 +37,7 @@ function drawCloud(context: CanvasRenderingContext2D, x: number, y: number, size
   context.fill();
 }
 
-function drawFlight(context: CanvasRenderingContext2D, flight: Flight) {
+function drawFlight(context: CanvasRenderingContext2D, flight: Flight, sprite: HTMLImageElement | null) {
   context.setTransform(2, 0, 0, 2, 0, 0);
   const sky = context.createLinearGradient(0, 0, 0, height);
   sky.addColorStop(0, "#c2bbef");
@@ -76,32 +78,23 @@ function drawFlight(context: CanvasRenderingContext2D, flight: Flight) {
   context.save();
   context.translate(birdX, flight.y);
   context.rotate(Math.min(0.65, Math.max(-0.35, flight.speed / 560)));
-  context.fillStyle = "#fff0ad";
-  context.strokeStyle = "#9c5c67";
-  context.lineWidth = 2;
-  context.beginPath();
-  context.ellipse(0, 0, 14, 11, 0, 0, Math.PI * 2);
-  context.fill();
-  context.stroke();
-  context.fillStyle = "#efac83";
-  context.beginPath();
-  context.ellipse(-6, 3, 7, 4, -0.25, 0, Math.PI * 2);
-  context.fill();
-  context.fillStyle = "#633f63";
-  context.beginPath();
-  context.arc(6, -3, 2, 0, Math.PI * 2);
-  context.fill();
-  context.fillStyle = "#d97968";
-  context.beginPath();
-  context.moveTo(12, 0);
-  context.lineTo(19, 3);
-  context.lineTo(12, 6);
-  context.fill();
+  if (sprite?.naturalWidth) {
+    const scale = spriteSize / Math.max(sprite.naturalWidth, sprite.naturalHeight);
+    const w = sprite.naturalWidth * scale;
+    const h = sprite.naturalHeight * scale;
+    context.drawImage(sprite, -w / 2, -h / 2, w, h);
+  } else {
+    context.fillStyle = "#fff0ad";
+    context.beginPath();
+    context.arc(0, 0, radius, 0, Math.PI * 2);
+    context.fill();
+  }
   context.restore();
 }
 
 export function FlappyBird() {
   const canvas = useRef<HTMLCanvasElement>(null);
+  const sprite = useRef<HTMLImageElement | null>(null);
   const flapButton = useRef<HTMLButtonElement>(null);
   const startButton = useRef<HTMLButtonElement>(null);
   const flight = useRef<Flight | null>(null);
@@ -122,11 +115,22 @@ export function FlappyBird() {
   }
 
   useEffect(() => {
-    const drawingContext = canvas.current?.getContext("2d");
+    const image = new Image();
+    image.onload = () => {
+      sprite.current = image;
+      const context = canvas.current?.getContext("2d", { alpha: false });
+      if (context && flight.current) drawFlight(context, flight.current, image);
+    };
+    image.src = dogSprite;
+    return () => { image.onload = null; };
+  }, []);
+
+  useEffect(() => {
+    const drawingContext = canvas.current?.getContext("2d", { alpha: false });
     if (!drawingContext) return;
     const context = drawingContext;
     if (!flight.current) flight.current = newFlight();
-    drawFlight(context, flight.current);
+    drawFlight(context, flight.current, sprite.current);
     if (phase !== "playing") {
       if (phase === "finished") startButton.current?.focus({ preventScroll: true });
       return;
@@ -159,7 +163,7 @@ export function FlappyBird() {
         current.pipes.shift();
         current.pipes.push(makePipe(current.pipes[current.pipes.length - 1].x + spacing));
       }
-      drawFlight(context, current);
+      drawFlight(context, current, sprite.current);
       if (hit) {
         const result = Math.max(bestScore.current, readBest(), current.score);
         bestScore.current = result;
@@ -185,7 +189,13 @@ export function FlappyBird() {
           {phase === "playing" ? (
             <button type="button" className="flappy-input" ref={flapButton} aria-label="Flap bird" onClick={flap}
               onKeyDown={(event) => {
-                if (event.key === "ArrowUp") { event.preventDefault(); flap(); }
+                if (event.code === "Space" || event.key === " " || event.key === "ArrowUp") {
+                  event.preventDefault();
+                  if (!event.repeat) flap();
+                }
+              }}
+              onKeyUp={(event) => {
+                if (event.code === "Space" || event.key === " ") event.preventDefault();
               }} />
           ) : (
             <div className="flappy-overlay">

@@ -11,6 +11,12 @@ const illustrations = [
   ["flowers", 72, 95, 9, -15], ["flowers", 6, 57, 8, -9], ["flowers", 94, 70, 7, 19],
   ["butterfly", 17, 61, 7, 24], ["butterfly", 67, 46, 8, -15], ["butterfly", 87, 38, 8, 20],
   ["flowers", 44, 97, 7, -13], ["flowers", 73, 33, 6, 17], ["pot", 96, 13, 7, 14],
+  ["butterfly", 31, 17, 5, -23], ["flowers", 18, 38, 5, -8], ["pot", 27, 70, 6, 13],
+  ["flowers", 16, 82, 5, 16], ["flowers", 4, 95, 7, -12], ["butterfly", 34, 64, 5, 13],
+  ["flowers", 52, 87, 6, 13], ["butterfly", 74, 74, 5, -8], ["pot", 91, 92, 6, 13],
+  ["flowers", 83, 53, 5, -14], ["flowers", 93, 26, 5, 14], ["butterfly", 61, 8, 5, 21],
+  ["pot", 43, 14, 5, -19], ["flowers", 39, 30, 5, 16], ["butterfly", 11, 23, 5, -15],
+  ["flowers", 72, 7, 6, 9], ["pot", 70, 86, 5, -12], ["flowers", 59, 67, 5, 16],
 ] as const;
 
 export function GiftWallpaper({ paused }: { paused: boolean }) {
@@ -31,6 +37,10 @@ export function GiftWallpaper({ paused }: { paused: boolean }) {
       <span className="wallpaper-heart wallpaper-heart-one" />
       <span className="wallpaper-heart wallpaper-heart-two" />
       <span className="wallpaper-heart wallpaper-heart-three" />
+      <span className="cinema-edge cinema-edge-top" />
+      <span className="cinema-edge cinema-edge-bottom" />
+      <span className="cinema-corner cinema-corner-left" />
+      <span className="cinema-corner cinema-corner-right" />
     </div>
   );
 }

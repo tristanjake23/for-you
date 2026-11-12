@@ -1,5 +1,5 @@
-import { AnimatePresence, motion, type Variants } from "motion/react";
-import { useState } from "react";
+import { AnimatePresence, motion, useIsPresent, type Variants } from "motion/react";
+import { useState, type ReactNode } from "react";
 import captions from "./photo-captions.json";
 import "./notebook.css";
 
@@ -12,14 +12,40 @@ const pages = [
 const photosPerPage = 5;
 
 const sheetTurn: Variants = {
-  enter: (direction: number) => ({ rotateY: 72 * direction, opacity: 0.48 }),
-  open: { rotateY: 0, opacity: 1, transition: { duration: 0.36, ease: [0.22, 0.67, 0.29, 1] } },
+  enter: (direction: number) => ({ rotateY: 35 * direction, opacity: 0.72, zIndex: 1 }),
+  open: {
+    rotateY: 0,
+    opacity: 1,
+    zIndex: 1,
+    transition: { duration: 0.44, ease: [0.2, 0.7, 0.25, 1] },
+  },
   exit: (direction: number) => ({
-    rotateY: -76 * direction,
-    opacity: 0.45,
-    transition: { duration: 0.22, ease: "easeIn" },
+    rotateY: -82 * direction,
+    opacity: [1, 1, 0.22],
+    zIndex: 2,
+    transition: { duration: 0.38, ease: [0.38, 0.03, 0.68, 1] },
   }),
 };
+
+function NotebookSheet({ theme, direction, reduceMotion, children }: {
+  theme: string; direction: number; reduceMotion: boolean; children: ReactNode;
+}) {
+  const present = useIsPresent();
+  return (
+    <motion.div
+      className={`notebook-paper notebook-${theme}`}
+      custom={direction}
+      variants={reduceMotion ? undefined : sheetTurn}
+      initial={reduceMotion ? false : "enter"}
+      animate="open"
+      exit={reduceMotion ? undefined : "exit"}
+      inert={!present}
+      aria-hidden={!present}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export interface ScrapbookPhoto {
   url: string;
@@ -64,52 +90,47 @@ export function Notebook({ photos, reduceMotion }: {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: reduceMotion ? 0 : 0.26 }}>
           <span className="notebook-binding" aria-hidden="true" />
-          <AnimatePresence initial={false} custom={direction} mode="wait">
-            <motion.div
-              key={page}
-              className={`notebook-paper notebook-${pages[page].theme}`}
-              custom={direction}
-              variants={reduceMotion ? undefined : sheetTurn}
-              initial={reduceMotion ? false : "enter"}
-              animate="open"
-              exit={reduceMotion ? undefined : "exit"}
-            >
-              <span className={`paper-stickers paper-stickers-top illustrated-sticker art-${pages[page].art}`} aria-hidden="true" />
-              <span className="paper-stickers paper-stickers-bottom illustrated-sticker art-flowers" aria-hidden="true" />
-              <div className="paper-heading">
-                <h3>{pages[page].title}</h3>
-                <span aria-hidden="true">0{page + 1}</span>
-              </div>
-              <div className="notebook-photos">
-                {Array.from({ length: photosPerPage }, (_, index) => {
-                  const slot = page * photosPerPage + index;
-                  const photo = photos[slot];
-                  const isFlipped = !!photo && flipped === photo.filename;
-                  return photo ? (
-                    <button
-                      type="button"
-                      key={photo.filename}
-                      className="notebook-print"
-                      aria-label={`${isFlipped ? "Show photo" : "Read caption for"} ${photo.label}`}
-                      aria-pressed={isFlipped}
-                      onClick={() => setFlipped(isFlipped ? null : photo.filename)}
-                    >
-                      {isFlipped ? (
-                        <span className="notebook-caption">{photoCaptions[photo.filename] || "One of my favorite memories with you. ♡"}</span>
-                      ) : (
-                        <img src={photo.url} alt={photo.label} loading="lazy" />
-                      )}
-                    </button>
-                  ) : (
-                    <figure className="notebook-print" key={slot}>
-                      <span className="notebook-placeholder" aria-hidden="true"><i className="illustrated-sticker art-butterfly" /></span>
-                      <figcaption>Photo {String(slot + 1).padStart(2, "0")}</figcaption>
-                    </figure>
-                  );
-                })}
-              </div>
-            </motion.div>
-          </AnimatePresence>
+          <div className="notebook-sheets">
+            <AnimatePresence initial={false} custom={direction}>
+              <NotebookSheet key={page} theme={pages[page].theme} direction={direction} reduceMotion={reduceMotion}>
+                <span className={`paper-stickers paper-stickers-top illustrated-sticker art-${pages[page].art}`} aria-hidden="true" />
+                <span className="paper-stickers paper-stickers-bottom illustrated-sticker art-flowers" aria-hidden="true" />
+                <span className="paper-edge-tape" aria-hidden="true" />
+                <div className="paper-heading">
+                  <h3>{pages[page].title}</h3>
+                  <span aria-hidden="true">0{page + 1}</span>
+                </div>
+                <div className="notebook-photos">
+                  {Array.from({ length: photosPerPage }, (_, index) => {
+                    const slot = page * photosPerPage + index;
+                    const photo = photos[slot];
+                    const isFlipped = !!photo && flipped === photo.filename;
+                    return photo ? (
+                      <button
+                        type="button"
+                        key={photo.filename}
+                        className="notebook-print"
+                        aria-label={`${isFlipped ? "Show photo" : "Read caption for"} ${photo.label}`}
+                        aria-pressed={isFlipped}
+                        onClick={() => setFlipped(isFlipped ? null : photo.filename)}
+                      >
+                        {isFlipped ? (
+                          <span className="notebook-caption">{photoCaptions[photo.filename] || "One of my favorite memories with you. ♡"}</span>
+                        ) : (
+                          <img src={photo.url} alt={photo.label} loading="lazy" />
+                        )}
+                      </button>
+                    ) : (
+                      <figure className="notebook-print" key={slot}>
+                        <span className="notebook-placeholder" aria-hidden="true"><i /></span>
+                        <figcaption>Photo {String(slot + 1).padStart(2, "0")}</figcaption>
+                      </figure>
+                    );
+                  })}
+                </div>
+              </NotebookSheet>
+            </AnimatePresence>
+          </div>
           <nav className="notebook-nav" aria-label="Notebook pages">
             <button type="button" onClick={() => turn(null)}>Close</button>
             <div className="notebook-page-turn">
