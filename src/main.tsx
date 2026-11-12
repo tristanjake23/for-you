@@ -6,6 +6,7 @@ import blackDog from "./assets/black-dog.webp";
 import flowerSprites from "./assets/flower-sprites.webp";
 import whiteDog from "./assets/white-dog.webp";
 import { AmbientSky } from "./AmbientSky";
+import { CatStickers } from "./CatStickers";
 import { FlowerCurtain } from "./FlowerCurtain";
 import { Home } from "./Home";
 import "./style.css";
@@ -62,33 +63,36 @@ function App() {
       ) : (
         <main className="gift-screen">
           <h1>For you, <em>love.</em></h1>
-          <button
-            className="gift-button"
-            type="button"
-            ref={giftButton}
-            aria-disabled={isOpening}
-            onClick={() => {
-              if (stage === "closed") setStage(reduceMotion ? "revealed" : "opening");
-            }}
-          >
-            <span className="gift-box" aria-hidden="true">
-              <span className="gift-body"><span className="gift-heart">♥</span></span>
-              <motion.span
-                className="gift-lid"
-                initial={false}
-                animate={isOpening
-                  ? { transform: "translate3d(22px, -72px, 0) rotate(17deg)", opacity: 0 }
-                  : { transform: "translate3d(0, 0, 0) rotate(0deg)", opacity: 1 }}
-                transition={{ duration: 0.48, ease: "easeInOut" }}
-                onAnimationComplete={() => {
-                  setStage((current) => current === "opening" ? "blooming" : current);
-                }}
-              >
-                <span className="gift-bow"><i /><b /></span>
-              </motion.span>
-            </span>
-            <span className="button-label">{isOpening ? "Opening…" : "Open your gift"}</span>
-          </button>
+          <div className="gift-stage">
+            <button
+              className="gift-button"
+              type="button"
+              ref={giftButton}
+              aria-disabled={isOpening}
+              onClick={() => {
+                if (stage === "closed") setStage(reduceMotion ? "revealed" : "opening");
+              }}
+            >
+              <span className="gift-box" aria-hidden="true">
+                <span className="gift-body"><span className="gift-heart">♥</span></span>
+                <motion.span
+                  className="gift-lid"
+                  initial={false}
+                  animate={isOpening
+                    ? { transform: "translate3d(22px, -72px, 0) rotate(17deg)", opacity: 0 }
+                    : { transform: "translate3d(0, 0, 0) rotate(0deg)", opacity: 1 }}
+                  transition={{ duration: 0.48, ease: "easeInOut" }}
+                  onAnimationComplete={() => {
+                    setStage((current) => current === "opening" ? "blooming" : current);
+                  }}
+                >
+                  <span className="gift-bow"><i /><b /></span>
+                </motion.span>
+              </span>
+              <span className="button-label">{isOpening ? "Opening…" : "Open your gift"}</span>
+            </button>
+            <CatStickers paused={isOpening} />
+          </div>
           {stage === "blooming" && <FlowerCurtain onComplete={() => setStage("revealed")} />}
         </main>
       )}

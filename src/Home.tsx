@@ -1,6 +1,8 @@
 import { motion } from "motion/react";
 import { useEffect, useRef } from "react";
 import { Bouquet } from "./Bouquet";
+import { CatStickers } from "./CatStickers";
+import { SongCard } from "./SongCard";
 import "./home.css";
 
 interface HomeProps {
@@ -51,6 +53,7 @@ export function Home({ photos, blackDog, whiteDog, reduceMotion, onReplay }: Hom
               <span className="sticker sticker-mini-sparkle">✧</span>
               <span className="sticker sticker-outline-heart">♡</span>
             </div>
+            <CatStickers />
             <div className="surprise">
               <Bouquet />
               <motion.img
@@ -72,6 +75,8 @@ export function Home({ photos, blackDog, whiteDog, reduceMotion, onReplay }: Hom
             </div>
           </div>
         </section>
+
+        <SongCard />
 
         <motion.article
           className="love-note"

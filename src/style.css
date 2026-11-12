@@ -198,3 +198,18 @@ h1, h2 {
   .gift-box { transition: none; }
   .gift-button:not([aria-disabled="true"]):hover .gift-box { transform: none; }
 }
+
+.gift-stage {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  width: min(100%, 29rem);
+}
+
+.gift-stage .cat-peach { left: 3%; }
+.gift-stage .cat-lilac { right: 3%; }
+
+@media (max-width: 460px) {
+  .gift-stage .cat-peach { left: 1%; }
+  .gift-stage .cat-lilac { right: 1%; }
+}

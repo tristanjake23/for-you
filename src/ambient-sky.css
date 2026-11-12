@@ -5,17 +5,17 @@
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(ellipse at 9% 14%, #eb83db9c, transparent 38%),
-    radial-gradient(ellipse at 90% 20%, #8aa3ff9c, transparent 49%),
-    radial-gradient(ellipse at 75% 96%, #d059b294, transparent 53%),
-    linear-gradient(145deg, #6b37a3 1%, #512487 48%, #341658 100%);
+    radial-gradient(ellipse at 14% 18%, #fd9dd5b8, transparent 42%),
+    radial-gradient(ellipse at 85% 12%, #a3bbffbc, transparent 47%),
+    radial-gradient(ellipse at 64% 96%, #f688c79a, transparent 57%),
+    linear-gradient(145deg, #934db9 1%, #62339c 49%, #421b6b 100%);
 }
 
 .sky-cloud {
   position: absolute;
   width: clamp(17rem, 48vw, 44rem);
   aspect-ratio: 2.75;
-  opacity: 0.43;
+  opacity: 0.54;
   background:
     radial-gradient(ellipse at 26% 65%, #ffe2fb 0 38%, transparent 64%) 0 45% / 52% 74%,
     radial-gradient(ellipse at 47% 70%, #f8ccfc 0 40%, transparent 66%) 31% 2% / 64% 95%,
@@ -33,7 +33,7 @@
 .cloud-side {
   top: 36%;
   right: -18%;
-  opacity: 0.38;
+  opacity: 0.48;
   animation-duration: 27s;
   animation-delay: -12s;
   animation-direction: alternate-reverse;
@@ -42,7 +42,7 @@
 .cloud-low {
   left: 9%;
   bottom: -10%;
-  opacity: 0.33;
+  opacity: 0.44;
   animation-duration: 31s;
   animation-delay: -16s;
 }
@@ -102,4 +102,9 @@
   .ambient-sky > * {
     animation: none;
   }
+}
+
+.sky-sticker-layer:nth-of-type(4) {
+  animation-duration: 13s;
+  animation-delay: -9s;
 }

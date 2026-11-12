@@ -29,6 +29,14 @@ const stickerGroups = [
     { mark: "✿", x: 84, y: 7, color: "pink", size: 25, angle: 22 },
     { mark: "✧", x: 94, y: 57, color: "gold", size: 21, angle: 9 },
   ],
+  [
+    { mark: "🎀", x: 12, y: 32, color: "pink", size: 35, angle: -16 },
+    { mark: "🌷", x: 22, y: 73, color: "peach", size: 32, angle: -19 },
+    { mark: "✿", x: 39, y: 7, color: "gold", size: 24, angle: 11 },
+    { mark: "🌙", x: 77, y: 14, color: "gold", size: 28, angle: 13 },
+    { mark: "🎀", x: 85, y: 83, color: "pink", size: 30, angle: 14 },
+    { mark: "♡", x: 92, y: 31, color: "ice", size: 24, angle: 19 },
+  ],
 ];
 
 export function AmbientSky({ paused }: { paused: boolean }) {
