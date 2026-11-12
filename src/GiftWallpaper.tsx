@@ -1,15 +1,16 @@
 import type { CSSProperties } from "react";
-import blackDog from "./assets/black-dog.webp";
-import whiteDog from "./assets/white-dog.webp";
-import dogFace from "./assets/flappy-dog.webp";
+import closeup from "./assets/opening-dogs/closeup.webp";
+import smiling from "./assets/opening-dogs/smiling.webp";
+import standing from "./assets/opening-dogs/standing.webp";
+import resting from "./assets/opening-dogs/resting.webp";
 import "./gift-wallpaper.css";
 
-const dogImages: Partial<Record<string, string>> = { blackDog, whiteDog, dogFace };
+const dogImages: Partial<Record<string, string>> = { closeup, smiling, standing, resting };
 
 const illustrations = [
-  ["blackDog", 2, 17, 16, -22], ["whiteDog", 22, 22, 13, 12], ["dogFace", 51, 3, 14, 7],
-  ["whiteDog", 76, 18, 15, -14], ["blackDog", 96, 48, 14, -23], ["blackDog", 32, 86, 16, 14],
-  ["whiteDog", 61, 94, 17, -14], ["whiteDog", 84, 85, 15, 15], ["blackDog", 7, 77, 13, 19],
+  ["resting", 2, 17, 16, -22], ["standing", 22, 22, 13, 12], ["closeup", 51, 3, 14, 7],
+  ["smiling", 76, 18, 15, -14], ["closeup", 96, 48, 14, -23], ["resting", 32, 86, 16, 14],
+  ["smiling", 61, 94, 17, -14], ["standing", 84, 85, 15, 15], ["closeup", 7, 77, 13, 19],
   ["pot", 9, 41, 8, -16], ["pot", 66, 20, 7, 10], ["pot", 78, 61, 8, 10],
   ["pot", 18, 97, 8, 19], ["pot", 46, 64, 6, -15], ["pot", 9, 5, 7, -9],
   ["flowers", 34, 7, 8, -20], ["flowers", 32, 49, 8, 21], ["flowers", 87, 8, 8, 14],
