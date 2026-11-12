@@ -1,0 +1,116 @@
+.surprise {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 31rem);
+  height: clamp(13rem, 63vw, 17rem);
+  margin: 0.55rem auto 0;
+}
+
+.bouquet {
+  position: absolute;
+  inset: 0 0 1rem;
+  pointer-events: none;
+  transform-origin: bottom;
+}
+
+.flower {
+  position: absolute;
+  bottom: 0;
+  left: var(--flower-x);
+  height: var(--height);
+  width: 4px;
+  transform: rotate(var(--angle));
+  transform-origin: bottom;
+}
+
+.flower-stem {
+  display: block;
+  height: 100%;
+  border-radius: 1rem;
+  background: linear-gradient(90deg, #4d7656, #71956a);
+  transform-origin: bottom;
+}
+
+.leaf {
+  position: absolute;
+  width: 27px;
+  height: 13px;
+  background: linear-gradient(150deg, #91b07a, #4c7c5a);
+  border-radius: 90% 10% 80% 15%;
+}
+
+.leaf-left {
+  top: 51%;
+  right: 1px;
+  rotate: 32deg;
+}
+
+.leaf-right {
+  top: 68%;
+  left: 1px;
+  rotate: -36deg;
+}
+
+.blossom {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: var(--size);
+  aspect-ratio: 1;
+  translate: -50% -52%;
+  filter: drop-shadow(0 4px 4px #67436725);
+}
+
+.petal {
+  position: absolute;
+  top: 0;
+  left: 32%;
+  width: 36%;
+  height: 54%;
+  transform-origin: 50% 93%;
+  border-radius: 65% 65% 58% 58%;
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--petal), white 56%),
+    var(--petal) 55%,
+    color-mix(in srgb, var(--petal), #562f79 30%)
+  );
+}
+
+.flower-center {
+  z-index: 1;
+  width: 24%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff5d0 12%, #f5d695 58%, #d39965);
+  box-shadow: 0 0 0 2px #f6d6ac55;
+}
+
+.dog {
+  position: absolute;
+  bottom: 0;
+  display: block;
+  object-fit: contain;
+  object-position: bottom;
+  filter: drop-shadow(0 10px 9px #57365333);
+}
+
+.dog-white {
+  right: 4%;
+  width: min(44%, 12rem);
+  height: 89%;
+}
+
+.dog-black {
+  left: 0;
+  width: min(51%, 14rem);
+  height: 70%;
+}
+
+@media (max-width: 440px) {
+  .bouquet {
+    scale: 0.76;
+  }
+}
