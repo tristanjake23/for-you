@@ -1,12 +1,14 @@
 import { motion } from "motion/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Bouquet } from "./Bouquet";
 import { CatStickers } from "./CatStickers";
 import { Letter } from "./Letter";
+import { Notebook, type ScrapbookPhoto } from "./Notebook";
+import { Games, KittenToken } from "./Games";
 import "./home.css";
 
 interface HomeProps {
-  photos: { url: string; label: string }[];
+  photos: ScrapbookPhoto[];
   blackDog: string;
   whiteDog: string;
   reduceMotion: boolean;
@@ -15,6 +17,16 @@ interface HomeProps {
 
 export function Home({ photos, blackDog, whiteDog, reduceMotion, onReplay }: HomeProps) {
   const heading = useRef<HTMLHeadingElement>(null);
+  const [huntActive, setHuntActive] = useState(false);
+  const [foundKittens, setFoundKittens] = useState<number[]>([]);
+
+  function findKitten(index: number) {
+    setFoundKittens((found) => found.includes(index) ? found : [...found, index]);
+  }
+
+  function kitten(index: number) {
+    return huntActive && <KittenToken index={index} found={foundKittens.includes(index)} onFind={findKitten} />;
+  }
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -33,6 +45,7 @@ export function Home({ photos, blackDog, whiteDog, reduceMotion, onReplay }: Hom
           <a href="#home">Home</a>
           <a href="#letter">Letter</a>
           <a href="#photos">Our photos</a>
+          <a href="#games">Games</a>
         </nav>
       </header>
 
@@ -41,6 +54,7 @@ export function Home({ photos, blackDog, whiteDog, reduceMotion, onReplay }: Hom
           <div className="hero-copy">
             <h1 id="home-title" ref={heading} tabIndex={-1}>My favorite <em>person.</em></h1>
             <a className="photo-link" href="#photos">See our photos <span aria-hidden="true">↓</span></a>
+            <a className="hero-games-link" href="#games">Play a game <span aria-hidden="true">↘</span></a>
           </div>
 
           <div className="scrapbook-scene">
@@ -55,6 +69,7 @@ export function Home({ photos, blackDog, whiteDog, reduceMotion, onReplay }: Hom
               <span className="sticker sticker-outline-heart">♡</span>
             </div>
             <CatStickers />
+            {kitten(0)}
             <div className="surprise">
               <Bouquet />
               <motion.img
@@ -77,28 +92,11 @@ export function Home({ photos, blackDog, whiteDog, reduceMotion, onReplay }: Hom
           </div>
         </section>
 
-        <Letter reduceMotion={reduceMotion} />
+        <Letter reduceMotion={reduceMotion} kitten={kitten(1)} />
 
-        <section className="gallery" id="photos" aria-labelledby="photo-title">
-          <h2 id="photo-title">Our photos</h2>
-          {photos.length ? (
-            <div className="photo-grid">
-              {photos.map(({ url, label }) => (
-                <figure className="photo-print" key={label}>
-                  <img src={url} alt={label} loading="lazy" />
-                </figure>
-              ))}
-            </div>
-          ) : (
-            <div className="photo-grid" aria-label="Three empty photo frames">
-              {["first", "second", "third"].map((frame) => (
-                <figure className="photo-print" key={frame}>
-                  <span className="photo-placeholder" aria-hidden="true">♡</span>
-                </figure>
-              ))}
-            </div>
-          )}
-        </section>
+        <Notebook photos={photos} reduceMotion={reduceMotion} kitten={kitten(2)} />
+
+        <Games active={huntActive} found={foundKittens} onHunt={() => setHuntActive(true)} rewardPhoto={photos[0]} />
 
         <footer className="scrapbook-footer">
           <button className="replay-button" type="button" onClick={onReplay}>Replay surprise</button>

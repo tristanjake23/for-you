@@ -1,3 +1,5 @@
-# Photos
+# Scrapbook notebook photos
 
-Upload your JPG, JPEG, PNG, or WebP photos directly into this folder. Use lowercase file extensions and name the files `01.jpg`, `02.png`, and so on to control their order. They replace the empty frames in **Our photos** on Home.
+Upload up to 20 JPG, JPEG, PNG, or WebP photos here. Use lowercase extensions and number the files from `01` to `20` to set their order. There are five slots on each of four pages. The first photo also appears in the kitten hunt reward.
+
+To add a caption that appears when a photo is tapped, add the filename and caption to `src/photo-captions.json` in the repository.

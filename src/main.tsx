@@ -21,6 +21,7 @@ const photoFiles = import.meta.glob<string>("./assets/photos/*.{jpg,jpeg,png,web
 const photos = Object.keys(photoFiles).sort().map((path, index) => ({
   url: photoFiles[path],
   label: `Memory ${index + 1}`,
+  filename: path.split("/").pop()!,
 }));
 
 const musicFiles = import.meta.glob<string>("./assets/music/*.mp3", {
@@ -61,7 +62,7 @@ function App() {
   }
 
   function replay() {
-    if (["#home", "#letter", "#photos"].includes(window.location.hash)) {
+    if (["#home", "#letter", "#photos", "#games"].includes(window.location.hash)) {
       window.history.replaceState(window.history.state, "", window.location.pathname + window.location.search);
     }
     setHasReplayed(true);

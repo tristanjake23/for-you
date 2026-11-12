@@ -305,62 +305,6 @@
   line-height: 1.6;
 }
 
-.gallery {
-  margin: clamp(4.6rem, 10vw, 8rem) auto 0;
-  max-width: 57rem;
-  scroll-margin-top: 1.3rem;
-}
-
-.gallery h2 {
-  color: var(--lavender);
-  font-size: clamp(2.7rem, 7vw, 5rem);
-  letter-spacing: -0.05em;
-  text-align: center;
-}
-
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
-  gap: clamp(1rem, 3vw, 2rem);
-  margin: 1.5rem auto 0;
-}
-
-.photo-print {
-  width: min(100%, 20rem);
-  box-sizing: border-box;
-  justify-self: center;
-  margin: 0;
-  padding: 0.52rem 0.52rem 1.3rem;
-  background: #fff0f9;
-  box-shadow: 0 0.65rem 1.35rem #1c0b36a0;
-  rotate: -2deg;
-}
-
-.photo-print:nth-child(even) {
-  rotate: 2deg;
-}
-
-.photo-print img,
-.photo-placeholder {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-}
-
-.photo-print img {
-  display: block;
-  object-fit: cover;
-}
-
-.photo-placeholder {
-  display: grid;
-  place-items: center;
-  box-sizing: border-box;
-  border: 1px dashed #aa77ba;
-  background: radial-gradient(ellipse at 26% 21%, #fce0f1, #dec6f1 73%, #d1b7ea);
-  color: #854b94;
-  font-size: clamp(2.3rem, 7vw, 4rem);
-}
-
 .scrapbook-footer {
   padding: 3.6rem 0 2.6rem;
   text-align: center;
@@ -400,13 +344,7 @@
     margin: 0.75rem 0 1.45rem;
   }
 
-  .photo-grid {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
-  }
 
-  .photo-print {
-    padding-bottom: 1rem;
-  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
