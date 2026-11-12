@@ -6,7 +6,7 @@ import blackDog from "./assets/black-dog.webp";
 import flowerSprites from "./assets/flower-sprites.webp";
 import whiteDog from "./assets/white-dog.webp";
 import { AmbientSky } from "./AmbientSky";
-import { CatStickers } from "./CatStickers";
+import { GiftWallpaper } from "./GiftWallpaper";
 import { FlowerCurtain } from "./FlowerCurtain";
 import { Home } from "./Home";
 import "./style.css";
@@ -71,7 +71,7 @@ function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <AmbientSky paused={isOpening} />
+      {stage === "revealed" && <AmbientSky paused={false} />}
       {backgroundMusic && <audio ref={music} src={backgroundMusic} autoPlay preload="auto" />}
       {stage === "revealed" ? (
         <Home
@@ -83,54 +83,56 @@ function App() {
         />
       ) : (
         <main className="gift-screen">
-          <h1>For you, <em>love.</em></h1>
-          <div className="gift-stage">
-            <button
-              className="gift-button"
-              type="button"
-              ref={giftButton}
-              aria-disabled={isOpening}
-              onClick={openGift}
-            >
-              <span className="gift-box" aria-hidden="true">
-                <span className="gift-halo" />
-                <span className="gift-sparkle gift-sparkle-left">✦</span>
-                <span className="gift-sparkle gift-sparkle-right">✧</span>
-                <span className="gift-body"><span className="gift-heart">♥</span></span>
-                {isOpening && (
-                  <span className="gift-burst">
-                    {["♥", "✦", "✧", "♥", "✦", "✧", "♥", "✦"].map((mark, index) => (
-                      <span key={index} style={{
-                        "--burst-angle": `${-146 + index * 42}deg`,
-                        "--burst-distance": `${44 + (index % 3) * 14}px`,
-                      } as CSSProperties}>{mark}</span>
-                    ))}
-                  </span>
-                )}
-                <motion.span
-                  className="gift-lid"
-                  initial={false}
-                  animate={isOpening
-                    ? {
-                      transform: [
-                        "translate3d(0, 0, 0) rotate(0deg)",
-                        "translate3d(-8px, -48px, 0) rotate(-12deg)",
-                        "translate3d(33px, -94px, 0) rotate(22deg)",
-                      ],
-                      opacity: [1, 1, 0],
-                    }
-                    : { transform: "translate3d(0, 0, 0) rotate(0deg)", opacity: 1 }}
-                  transition={{ duration: 0.59, times: [0, 0.46, 1], ease: "easeInOut" }}
-                  onAnimationComplete={() => {
-                    setStage((current) => current === "opening" ? "blooming" : current);
-                  }}
-                >
-                  <span className="gift-bow"><i /><b /></span>
-                </motion.span>
-              </span>
-              <span className="button-label">{isOpening ? "Opening…" : "Open your gift"}</span>
-            </button>
-            <CatStickers paused={isOpening} />
+          <GiftWallpaper paused={isOpening} />
+          <div className="gift-card">
+            <h1>For you, <em>love.</em></h1>
+            <div className="gift-stage">
+              <button
+                className="gift-button"
+                type="button"
+                ref={giftButton}
+                aria-disabled={isOpening}
+                onClick={openGift}
+              >
+                <span className="gift-box" aria-hidden="true">
+                  <span className="gift-halo" />
+                  <span className="gift-sparkle gift-sparkle-left">✦</span>
+                  <span className="gift-sparkle gift-sparkle-right">✧</span>
+                  <span className="gift-body"><span className="gift-heart">♥</span></span>
+                  {isOpening && (
+                    <span className="gift-burst">
+                      {["♥", "✦", "✧", "♥", "✦", "✧", "♥", "✦"].map((mark, index) => (
+                        <span key={index} style={{
+                          "--burst-angle": `${-146 + index * 42}deg`,
+                          "--burst-distance": `${44 + (index % 3) * 14}px`,
+                        } as CSSProperties}>{mark}</span>
+                      ))}
+                    </span>
+                  )}
+                  <motion.span
+                    className="gift-lid"
+                    initial={false}
+                    animate={isOpening
+                      ? {
+                        transform: [
+                          "translate3d(0, 0, 0) rotate(0deg)",
+                          "translate3d(-8px, -48px, 0) rotate(-12deg)",
+                          "translate3d(33px, -94px, 0) rotate(22deg)",
+                        ],
+                        opacity: [1, 1, 0],
+                      }
+                      : { transform: "translate3d(0, 0, 0) rotate(0deg)", opacity: 1 }}
+                    transition={{ duration: 0.59, times: [0, 0.46, 1], ease: "easeInOut" }}
+                    onAnimationComplete={() => {
+                      setStage((current) => current === "opening" ? "blooming" : current);
+                    }}
+                  >
+                    <span className="gift-bow"><i /><b /></span>
+                  </motion.span>
+                </span>
+                <span className="button-label">{isOpening ? "Opening…" : "Open your gift"}</span>
+              </button>
+            </div>
           </div>
           {stage === "blooming" && <FlowerCurtain onComplete={() => setStage("revealed")} />}
         </main>

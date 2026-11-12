@@ -289,3 +289,102 @@ button.notebook-print { cursor: pointer; font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   .cover-label { transition: none; }
 }
+
+.notebook-cover {
+  border-color: #d1ad7e;
+  background:
+    radial-gradient(ellipse at 84% 16%, #dc9d896b 0, transparent 42%),
+    repeating-linear-gradient(44deg, #f3ceb71c 0 1px, transparent 1px 4px),
+    linear-gradient(145deg, #893e59, #602c4b 67%, #482741);
+  box-shadow: 0 0.36rem 0 #efe0c6, 0 0.56rem 0 #bb987d, 0 0.8rem 0 #795264, 0 1.3rem 2.4rem #321347a0;
+}
+
+.notebook-cover::after {
+  border: 3px double #ecc592;
+}
+
+.cover-label {
+  gap: 0.85rem;
+  color: #70354d;
+  outline-color: #9d6273;
+  background:
+    radial-gradient(ellipse at 20% 18%, #efc2bf, transparent 58%),
+    linear-gradient(140deg, #fff3d9, #f6dfcd);
+}
+
+.cover-decoration {
+  width: clamp(4.7rem, 16vw, 10.5rem);
+}
+
+.cover-decoration-top { top: 2%; right: 7%; rotate: 17deg; }
+.cover-decoration-bottom { bottom: 0; left: 7%; rotate: -23deg; }
+
+.cover-portrait {
+  position: absolute;
+  z-index: 2;
+  right: 5%;
+  bottom: 0;
+  width: clamp(4.5rem, 20vw, 11rem);
+  rotate: 9deg;
+  pointer-events: none;
+}
+
+.notebook-open {
+  background: linear-gradient(160deg, #815263, #64334d);
+}
+
+.notebook-paper {
+  --paper-accent: #975366;
+  --paper-tint: #f5ded3;
+  border: 1px solid #c6a78a;
+  backface-visibility: hidden;
+  background:
+    linear-gradient(90deg, #cfae8a88 0 0.38rem, transparent 0.7rem calc(100% - 0.48rem), #dbc0a383 calc(100% - 0.4rem)),
+    radial-gradient(ellipse at 95% 3%, var(--paper-tint), transparent 48%),
+    repeating-linear-gradient(transparent 0 1.6rem, #bfa48c31 1.6rem 1.65rem),
+    #fff6e5;
+  box-shadow: inset 0 0 0 3px #eddbbf, inset 0.5rem 0 0.8rem #80524d40;
+}
+
+.notebook-lilac { --paper-accent: #795b97; --paper-tint: #ebdaed; }
+.notebook-peach { --paper-accent: #9a6045; --paper-tint: #f5dac2; }
+.notebook-blue { --paper-accent: #536e84; --paper-tint: #d9e6e5; }
+
+.paper-heading {
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid #b9927d66;
+  padding: 0.15rem 2.55rem 0.55rem 0;
+}
+
+.paper-stickers { width: clamp(3.2rem, 8vw, 5.8rem); }
+.paper-stickers-top { top: -0.35rem; right: 0.3rem; rotate: 13deg; }
+.paper-stickers-bottom { bottom: -0.55rem; left: 0.15rem; rotate: -24deg; }
+
+.notebook-print {
+  padding: 0.42rem 0.42rem 0.9rem;
+  border-color: #d7bdab;
+  background: #fffcf2;
+  box-shadow: 0 0.2rem 0.4rem #67483f42;
+}
+
+.notebook-print::before {
+  height: 0.62rem;
+  background: repeating-linear-gradient(55deg, #d18a938c 0 4px, #f0b9aabf 4px 8px);
+}
+
+.notebook-print:nth-child(2n)::before {
+  background: repeating-linear-gradient(90deg, #b1a1cbb0 0 4px, #dac5e2c0 4px 8px);
+}
+
+.notebook-placeholder {
+  border: 1px dashed #c7a990;
+  background: radial-gradient(ellipse, #fff6e6, var(--paper-tint));
+}
+
+.notebook-placeholder i {
+  width: min(67%, 3.15rem);
+  opacity: 0.78;
+}
+
+.notebook-nav button { background: #713e53; }

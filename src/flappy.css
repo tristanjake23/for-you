@@ -1,0 +1,73 @@
+.flappy-section {
+  width: min(100%, 30rem);
+  margin: clamp(4.5rem, 10vw, 7rem) auto 0;
+  scroll-margin-top: 1rem;
+}
+
+.flappy-section h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #fff5e9;
+  font: italic clamp(2.4rem, 8vw, 4.1rem) Georgia, serif;
+}
+
+.flappy-frame {
+  padding: 0.7rem;
+  border: 1px solid #f0cba9;
+  border-radius: 1.1rem;
+  background: #fdf0e2;
+  color: #624253;
+  box-shadow: 0 0.9rem 2.2rem #27103685;
+}
+
+.flappy-score {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 0.55rem 0.65rem;
+  font: 0.83rem system-ui, sans-serif;
+}
+
+.flappy-score b { margin-left: 0.2rem; color: #7e3e64; }
+.flappy-field { position: relative; overflow: hidden; border-radius: 0.65rem; background: #e1d1ee; }
+.flappy-field canvas { display: block; width: 100%; height: auto; }
+
+.flappy-input, .flappy-overlay { position: absolute; inset: 0; }
+
+.flappy-input {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.flappy-overlay {
+  display: grid;
+  place-content: center;
+  gap: 0.65rem;
+  text-align: center;
+  background: #633a6a38;
+}
+
+.flappy-overlay p {
+  margin: 0;
+  color: #522749;
+  padding: 0.55rem 0.8rem;
+  border-radius: 99px;
+  background: #fff4e7;
+  font-weight: 700;
+}
+
+.flappy-overlay button {
+  padding: 0.75rem 1.1rem;
+  border: 1px solid #fff0e3;
+  border-radius: 99px;
+  background: #753a67;
+  color: #fff5ed;
+  font: 700 0.94rem system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.flappy-frame > p { margin: 0.7rem 0 0.2rem; text-align: center; font-size: 0.82rem; }
+.flappy-input:focus-visible { outline: 3px solid #fff6d8; outline-offset: -5px; }

@@ -1,0 +1,133 @@
+.illustrated-sticker {
+  display: block;
+  aspect-ratio: 1;
+  background: url("./assets/gift-illustrations.webp") var(--art-x, 0%) var(--art-y, 0%) / 400% 200% no-repeat;
+}
+
+.art-tabby { --art-x: 33.333333%; }
+.art-cream { --art-x: 66.666667%; }
+.art-dark { --art-x: 100%; }
+.art-gray { --art-y: 100%; }
+.art-pot { --art-x: 33.333333%; --art-y: 100%; }
+.art-flowers { --art-x: 66.666667%; --art-y: 100%; }
+.art-butterfly { --art-x: 100%; --art-y: 100%; }
+
+.gift-wallpaper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: #f4ecdb;
+  background-image:
+    radial-gradient(ellipse at 13% 20%, #d6acbc90 0 2px, transparent 4px),
+    radial-gradient(ellipse at 51% 65%, #d9a76a65 0 1px, transparent 3px),
+    radial-gradient(ellipse at 74% 45%, #9ea78160 0 2px, transparent 4px),
+    radial-gradient(ellipse at 50% 45%, #fffaf0, #e9d8c1);
+  background-size: 36px 41px, 29px 32px, 45px 52px, 100% 100%;
+  pointer-events: none;
+}
+
+.wallpaper-layer { position: absolute; inset: 0; }
+
+.wallpaper-sticker {
+  position: absolute;
+  left: var(--sticker-x);
+  top: var(--sticker-y);
+  width: clamp(3.1rem, var(--sticker-width), 14rem);
+  translate: -50% -50%;
+  rotate: var(--sticker-tilt);
+}
+
+.wallpaper-heart {
+  position: absolute;
+  width: clamp(0.7rem, 2vw, 1.5rem);
+  aspect-ratio: 1;
+  border-radius: 0.15rem;
+  background: #a64451;
+  transform: rotate(-34deg);
+}
+
+.wallpaper-heart::before, .wallpaper-heart::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.wallpaper-heart::before { translate: 0 -48%; }
+.wallpaper-heart::after { translate: 48% 0; }
+.wallpaper-heart-one { left: 21%; top: 65%; }
+.wallpaper-heart-two { left: 79%; top: 39%; scale: 0.73; }
+.wallpaper-heart-three { left: 93%; top: 7%; scale: 0.83; }
+
+.gift-screen:has(.gift-wallpaper) {
+  width: 100%;
+  min-height: 100svh;
+  padding-block: 3rem;
+  overflow: clip;
+  isolation: isolate;
+}
+
+.gift-card {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  width: min(75vw, 22rem);
+  padding: clamp(1.25rem, 6vw, 2.25rem) 0.25rem 1.35rem;
+  border: 1px solid #b38e762e;
+  border-radius: 0.4rem 0.6rem 0.52rem 0.45rem;
+  background: #fff9ec;
+  color: #763c4b;
+  box-shadow: 0.3rem 0.65rem 1.5rem #76513a38, inset 0 0 0 5px #f6e8d6;
+}
+
+.gift-card::before {
+  content: "";
+  position: absolute;
+  top: -0.45rem;
+  width: 4.9rem;
+  height: 0.9rem;
+  rotate: -6deg;
+  background: repeating-linear-gradient(118deg, #d6a3a5b8 0 4px, #efc1b9b8 4px 9px);
+}
+
+.gift-screen .gift-card h1 {
+  margin: 0 0 0.35rem;
+  font-size: clamp(2.15rem, 6.5vw, 3.65rem);
+  letter-spacing: -0.06em;
+  text-shadow: none;
+}
+
+.gift-screen .gift-card h1 em { color: #9d4e5b; }
+.gift-card .gift-stage { width: 100%; }
+.gift-card .gift-box { width: clamp(7.5rem, 40vw, 10.5rem); }
+.gift-card .gift-halo { background: radial-gradient(ellipse, #f9b4bb90 0, #f6b0b54f 35%, transparent 68%); }
+
+.gift-card .gift-body {
+  background:
+    repeating-linear-gradient(115deg, #fff5cf42 0 2px, transparent 2px 12px),
+    linear-gradient(122deg, #f5a0a2, #c76172 67%, #9c435a);
+  box-shadow: inset 3px 1px 2px #ffe2c2b0, inset -0.6rem -0.3rem 0.9rem #753c5475, 0 0.75rem 1rem #6d3e4b4f;
+}
+
+.gift-card .gift-lid { background: linear-gradient(180deg, #ffc2b4, #d7838c 63%, #b75d71); }
+.gift-card .gift-body::before, .gift-card .gift-lid::after { background: linear-gradient(90deg, #8d485c, #ffe1b2 48%, #bc777a); }
+.gift-card .gift-bow::before, .gift-card .gift-bow::after, .gift-card .gift-bow i { background: linear-gradient(#ffe1b9, #b8756d); }
+.gift-card .gift-bow b { background: #c78377; }
+.gift-card .button-label { background: #a14e61; border-color: #a14e61; color: #fff8ea; }
+
+@media (max-width: 600px) {
+  .wallpaper-sticker { width: clamp(2.6rem, calc(var(--sticker-width) * 1.32), 7rem); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wallpaper-layer { animation: illustrated-drift 9s ease-in-out infinite alternate; }
+  .wallpaper-layer:nth-child(2) { animation-delay: -3s; animation-duration: 12s; }
+  .wallpaper-layer:nth-child(3) { animation-delay: -6s; animation-duration: 15s; }
+  .wallpaper-paused .wallpaper-layer { animation-play-state: paused; }
+}
+
+@keyframes illustrated-drift {
+  from { transform: translate3d(-3px, -3px, 0); }
+  to { transform: translate3d(5px, 5px, 0); }
+}

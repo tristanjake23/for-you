@@ -1,10 +1,9 @@
 import { motion } from "motion/react";
-import type { ReactNode } from "react";
 import "./letter.css";
 
 const letterStickers = ["💌", "🦋", "🌷", "🎀", "💖", "🌙", "✨", "🌸"];
 
-export function Letter({ reduceMotion, kitten }: { reduceMotion: boolean; kitten: ReactNode }) {
+export function Letter({ reduceMotion }: { reduceMotion: boolean }) {
   return (
     <section className="letter-section" id="letter" aria-labelledby="letter-title">
       <motion.article
@@ -25,7 +24,6 @@ export function Letter({ reduceMotion, kitten }: { reduceMotion: boolean; kitten
           <p>Kung nami-miss mo ako ngayon, message mo ’ko. Miss din kita. I love you, Bembem. ♡</p>
           <p className="letter-signature">— Tristan</p>
         </div>
-        {kitten}
       </motion.article>
     </section>
   );
