@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { preload } from "react-dom";
 import { createRoot } from "react-dom/client";
 import blackDog from "./assets/black-dog.webp";
+import flowerSprites from "./assets/flower-sprites.webp";
 import whiteDog from "./assets/white-dog.webp";
 import { FlowerCurtain } from "./FlowerCurtain";
 import { Home } from "./Home";
@@ -27,6 +28,7 @@ function App() {
   const reduceMotion = useReducedMotion() ?? false;
   const isOpening = stage === "opening" || stage === "blooming";
 
+  preload(flowerSprites, { as: "image" });
   preload(blackDog, { as: "image" });
   preload(whiteDog, { as: "image" });
 

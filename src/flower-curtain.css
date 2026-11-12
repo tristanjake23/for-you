@@ -6,45 +6,20 @@
   pointer-events: none;
 }
 
+.flower-row {
+  position: absolute;
+  inset-inline: 0;
+}
+
 .curtain-flower {
   position: absolute;
   left: var(--x);
-  top: var(--y);
+  top: var(--offset);
   width: clamp(6.2rem, var(--diameter), 22rem);
   aspect-ratio: 1;
   translate: -50% -50%;
-  filter: drop-shadow(0 0.3rem 0.45rem #32134665);
-}
-
-.curtain-flower i {
-  position: absolute;
-  inset: 2% 33% 46%;
-  transform-origin: 50% 92%;
-  border-radius: 70% 70% 58% 58%;
-  background:
-    repeating-linear-gradient(82deg, transparent 0 6%, #ffffff19 8% 9%, transparent 11% 16%),
-    radial-gradient(ellipse at 50% 23%, color-mix(in srgb, var(--flower-color), white 48%), var(--flower-color) 55%, #9d4380 105%);
-  box-shadow: inset 0 0.17rem 0.3rem #fff4, inset 0 -0.3rem 0.6rem #61175848;
-}
-
-.curtain-flower b {
-  position: absolute;
-  inset: 40%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 32% 26%, #fff1ae 7%, #ffcc62 45%, #bb7042 92%);
-  box-shadow: 0 0 0 0.19rem #f5a76572, inset 0 0 0.45rem #7f4b2d7d;
-}
-
-.rosette i {
-  inset: 8% 22% 43%;
-  border-radius: 74% 65% 49% 56%;
-  background: radial-gradient(ellipse at 50% 15%, #fff3e9, var(--flower-color) 44%, #a755a6 104%);
-}
-
-.rosette b {
-  inset: 31%;
-  background: repeating-radial-gradient(ellipse at 42% 52%, #fbd4ef 0 8%, var(--flower-color) 11% 20%, #ac589d 22% 24%);
-  box-shadow: 0 0 0 0.16rem #ffffff35;
+  rotate: var(--tilt);
+  background: url("./assets/flower-sprites.webp") var(--sprite-x) var(--sprite-y) / 600% 200% no-repeat;
 }
 
 @media (max-width: 650px) {
