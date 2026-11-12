@@ -1,0 +1,79 @@
+.paper-icon {
+  --icon-color: #f3c8d1;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  width: 1em;
+  aspect-ratio: 1;
+  flex: none;
+  filter: drop-shadow(0 0.12em 0.08em #421e5e50);
+}
+
+.paper-icon::before,
+.paper-icon::after {
+  content: "";
+  position: absolute;
+}
+
+.paper-icon-star::before {
+  inset: 0;
+  clip-path: polygon(50% 0, 64% 35%, 100% 50%, 64% 64%, 50% 100%, 36% 64%, 0 50%, 36% 36%);
+  background: linear-gradient(135deg, #fff4d7, var(--icon-color) 54%, #b27d9a);
+}
+
+.paper-icon-diamond::before {
+  inset: 12%;
+  transform: rotate(45deg) scale(0.76);
+  border: 1px solid #fff7ec;
+  background: linear-gradient(135deg, #fff4dc, var(--icon-color) 60%, #9f729c);
+  box-shadow: inset -0.1em -0.1em 0 #925fa335;
+}
+
+.paper-icon-heart::before {
+  inset: 0;
+  clip-path: polygon(50% 95%, 8% 53%, 0 30%, 8% 12%, 27% 7%, 43% 14%, 50% 24%, 57% 14%, 73% 7%, 92% 12%, 100% 30%, 92% 53%);
+  background: linear-gradient(143deg, #ffe2e6, var(--icon-color) 60%, #bd7895);
+}
+
+.paper-icon-petal::before {
+  inset: 14% 21%;
+  border-radius: 90% 15% 88% 18%;
+  rotate: 29deg;
+  background: linear-gradient(135deg, #fff8e9, var(--icon-color) 60%, #a982ac);
+  box-shadow: inset -0.08em -0.08em 0 #926da44a;
+}
+
+.paper-icon-bow::before {
+  inset: 7% 0 0;
+  clip-path: polygon(0 8%, 38% 26%, 50% 32%, 62% 26%, 100% 8%, 91% 54%, 61% 48%, 74% 97%, 54% 85%, 49% 58%, 39% 96%, 22% 88%, 37% 48%, 9% 54%);
+  background: linear-gradient(170deg, #ffebee, var(--icon-color) 47%, #a15c8b);
+}
+
+.paper-icon-bow::after {
+  inset: 27% 41% 49%;
+  border-radius: 25%;
+  background: #fff0e0;
+}
+
+.paper-icon-moon::before {
+  inset: 4%;
+  border-radius: 50%;
+  box-shadow: inset 0.22em -0.13em 0 var(--icon-color);
+  transform: rotate(-21deg);
+}
+
+.paper-icon-bloom::before {
+  inset: 4%;
+  background:
+    radial-gradient(circle at 50% 50%, #d99a63 0 13%, transparent 15%),
+    radial-gradient(ellipse at 50% 28%, #fff4da 0 20%, transparent 22%),
+    radial-gradient(ellipse at 72% 50%, var(--icon-color) 0 22%, transparent 24%),
+    radial-gradient(ellipse at 50% 72%, var(--icon-color) 0 22%, transparent 24%),
+    radial-gradient(ellipse at 28% 50%, #fff4da 0 20%, transparent 22%);
+}
+
+.paper-icon-butterfly::before {
+  inset: 0;
+  clip-path: polygon(50% 42%, 28% 7%, 3% 12%, 0 39%, 20% 56%, 10% 75%, 27% 88%, 47% 65%, 50% 92%, 53% 65%, 73% 88%, 90% 75%, 80% 56%, 100% 39%, 97% 12%, 72% 7%);
+  background: linear-gradient(110deg, #fff2eb, var(--icon-color) 44%, #896594 50%, #f4d4f4 72%, #a680bd);
+}

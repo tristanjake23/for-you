@@ -443,3 +443,45 @@ button.notebook-print { cursor: pointer; font: inherit; }
   rotate: -7deg;
   background: linear-gradient(132deg, transparent 49%, #c8a88b 50%, transparent 52%);
 }
+
+.notebook-cover {
+  background:
+    radial-gradient(ellipse at 81% 10%, #d7a39c4f, transparent 43%),
+    repeating-linear-gradient(90deg, #e1b9b623 0 1px, transparent 1px 4px),
+    linear-gradient(100deg, #47283a 0, #6e3e51 5%, #a76871 9%, #7c4159 21%, #592b47 100%);
+  box-shadow: inset 0 0 0 0.32rem #773f576b, inset 0 0 0 0.48rem #edc29136, 0 0.32rem 0 #f2dec5, 0 0.57rem 0 #ba967e, 0 0.81rem 0 #6d4a61, 0 1.4rem 2rem #2510349c;
+}
+
+.cover-label {
+  border: 1px solid #bd8b67;
+  background:
+    radial-gradient(ellipse at 13% 8%, #f0cdb8, transparent 43%),
+    repeating-linear-gradient(0deg, #e3c7ac35 0 1px, transparent 1px 4px),
+    #f9ead3;
+  box-shadow: 0 0.25rem 0 #4f31454c, 0 0.7rem 1rem #301c4b61;
+}
+
+.cover-portrait {
+  width: clamp(3.5rem, 17vw, 9rem);
+  rotate: 17deg;
+  filter: drop-shadow(0 0.4rem 0.3rem #3827387d);
+}
+
+.notebook-sheets > .notebook-paper {
+  border-color: #bb997b;
+  box-shadow: inset 0 0 0 2px #ecd1ad, inset 1rem 0 1rem -0.7rem #76504699, 0.23rem 0.14rem 0 #ae8967;
+}
+
+.notebook-print:nth-child(2) { rotate: 3deg; }
+.notebook-print:nth-child(3) { rotate: -3.5deg; }
+.notebook-print:nth-child(4) { rotate: 1.25deg; }
+.notebook-print:nth-child(5) { rotate: -1deg; }
+
+.notebook-placeholder {
+  background: repeating-linear-gradient(35deg, #dbc3ab35 0 1px, transparent 1px 4px), linear-gradient(125deg, #f8ebd9, var(--paper-tint));
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .notebook-cover { transition: transform 240ms ease-out; }
+  .notebook-cover:hover { transform: perspective(850px) translateY(-4px) rotateX(2.5deg) rotateY(-3deg); }
+}

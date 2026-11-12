@@ -7,7 +7,7 @@ const pages = [
   { title: "Little moments", art: "pot", theme: "rose" },
   { title: "Better together", art: "butterfly", theme: "lilac" },
   { title: "Look at us", art: "flowers", theme: "peach" },
-  { title: "More to come", art: "cream", theme: "blue" },
+  { title: "More to come", art: "flowers", theme: "blue" },
 ];
 const photosPerPage = 5;
 
@@ -78,7 +78,7 @@ export function Notebook({ photos, reduceMotion }: {
           <span className="cover-corners" aria-hidden="true"><i /><i /><i /><i /></span>
           <span className="cover-decoration cover-decoration-top illustrated-sticker art-butterfly" aria-hidden="true" />
           <span className="cover-decoration cover-decoration-bottom illustrated-sticker art-flowers" aria-hidden="true" />
-          <span className="cover-portrait illustrated-sticker art-calico" aria-hidden="true" />
+          <span className="cover-portrait illustrated-sticker art-pot" aria-hidden="true" />
           <span className="cover-label">
             <span className="cover-title">Our little<br />scrapbook</span>
             <span className="cover-action">Open notebook <span aria-hidden="true">↗</span></span>

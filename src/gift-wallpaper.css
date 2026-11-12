@@ -121,15 +121,10 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .wallpaper-layer { animation: illustrated-drift 9s ease-in-out infinite alternate; }
-  .wallpaper-layer:nth-child(2) { animation-delay: -3s; animation-duration: 12s; }
-  .wallpaper-layer:nth-child(3) { animation-delay: -6s; animation-duration: 15s; }
+  .wallpaper-layer { animation: illustrated-drift 3.8s ease-in-out infinite alternate; }
+  .wallpaper-layer:nth-child(2) { animation-delay: -1.8s; animation-duration: 4.8s; }
+  .wallpaper-layer:nth-child(3) { animation-delay: -2.6s; animation-duration: 5.6s; animation-direction: alternate-reverse; }
   .wallpaper-paused .wallpaper-layer { animation-play-state: paused; }
-}
-
-@keyframes illustrated-drift {
-  from { transform: translate3d(-3px, -3px, 0); }
-  to { transform: translate3d(5px, 5px, 0); }
 }
 
 .cinema-edge {
@@ -168,4 +163,85 @@
   aspect-ratio: 1;
   object-fit: contain;
   filter: drop-shadow(0 0.15rem 0.25rem #704b4438);
+}
+
+.gift-screen:has(.gift-wallpaper) { perspective: 950px; }
+
+.gift-card {
+  transform-style: preserve-3d;
+  box-shadow: 0.25rem 0.35rem 0 #ceb09b, 0.38rem 0.67rem 0 #b08a7d, 0.56rem 1.2rem 1.65rem #70493a51, inset 0 0 0 5px #f6e8d6;
+}
+
+.gift-card > h1 { transform: translateZ(12px); }
+.gift-card .gift-stage { transform: translateZ(22px); }
+
+.botanical {
+  display: block;
+  aspect-ratio: 1;
+  filter: drop-shadow(0 0.15rem 0.16rem #6d554839);
+}
+
+.botanical::before {
+  content: "";
+  position: absolute;
+  left: 47%;
+  top: 39%;
+  bottom: 2%;
+  width: 6%;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #66774b, #a0a578, #6e7952);
+  rotate: -10deg;
+}
+
+.botanical::after {
+  content: "";
+  position: absolute;
+  top: 63%;
+  left: 48%;
+  width: 34%;
+  height: 13%;
+  border-radius: 95% 8% 80% 14%;
+  rotate: -27deg;
+  background: linear-gradient(150deg, #a0a57a, #5f7651);
+}
+
+.botanical i {
+  position: absolute;
+  inset: 0 11% 28%;
+}
+
+.botanical-daisy i {
+  background:
+    radial-gradient(circle at 50% 48%, #fbe4a0 0 9%, #c48e56 10% 13%, transparent 15%),
+    radial-gradient(ellipse at 50% 27%, #fff6df 0 19%, transparent 21%),
+    radial-gradient(ellipse at 68% 43%, #f2dabf 0 21%, transparent 23%),
+    radial-gradient(ellipse at 59% 62%, #fff1d7 0 19%, transparent 21%),
+    radial-gradient(ellipse at 38% 60%, #f3dcc4 0 20%, transparent 22%),
+    radial-gradient(ellipse at 33% 39%, #fff5e0 0 19%, transparent 21%);
+}
+
+.botanical-poppy i {
+  background:
+    radial-gradient(circle at 50% 49%, #714458 0 9%, #d99777 10% 12%, transparent 14%),
+    radial-gradient(ellipse at 32% 49%, #d87479 0 20%, transparent 22%),
+    radial-gradient(ellipse at 58% 33%, #efaca0 0 22%, transparent 24%),
+    radial-gradient(ellipse at 67% 58%, #c35b70 0 23%, transparent 25%),
+    radial-gradient(ellipse at 41% 60%, #f3a799 0 20%, transparent 22%);
+}
+
+.botanical-lavender i {
+  inset: 0 25% 20%;
+  rotate: -10deg;
+  background:
+    radial-gradient(ellipse at 52% 19%, #c8a7d6 0 11%, transparent 13%),
+    radial-gradient(ellipse at 37% 31%, #aa83b8 0 12%, transparent 14%),
+    radial-gradient(ellipse at 63% 40%, #d9b8e3 0 12%, transparent 14%),
+    radial-gradient(ellipse at 39% 50%, #a47dac 0 12%, transparent 14%),
+    radial-gradient(ellipse at 67% 61%, #bd91c5 0 12%, transparent 14%),
+    radial-gradient(ellipse at 46% 71%, #996caa 0 13%, transparent 15%);
+}
+
+@keyframes illustrated-drift {
+  from { transform: translate3d(-7px, -10px, 0) rotate(-0.6deg); }
+  to { transform: translate3d(8px, 12px, 0) rotate(0.7deg); }
 }

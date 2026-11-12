@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import "./letter.css";
 
-const letterStickers = ["💌", "🦋", "🌷", "🎀", "💖", "🌙", "✨", "🌸"];
+const letterStickers = ["diamond", "butterfly", "petal", "bow", "heart", "moon", "star", "bloom"];
 
 export function Letter({ reduceMotion }: { reduceMotion: boolean }) {
   return (
@@ -13,9 +13,9 @@ export function Letter({ reduceMotion }: { reduceMotion: boolean }) {
         transition={{ duration: reduceMotion ? 0 : 0.4 }}
       >
         <div className="letter-stickers" aria-hidden="true">
-          {letterStickers.map((sticker) => <span key={sticker}>{sticker}</span>)}
+          {letterStickers.map((sticker) => <span key={sticker} className={`paper-icon paper-icon-${sticker}`} />)}
         </div>
-        <span className="letter-stamp" aria-hidden="true">♥</span>
+        <span className="letter-stamp" aria-hidden="true"><i className="paper-icon paper-icon-heart" /></span>
         <h2 id="letter-title">Para sa’yo, Bembem</h2>
         <div className="letter-copy">
           <p>Hi, love.</p>

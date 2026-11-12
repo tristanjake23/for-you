@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 import { useEffect, useRef } from "react";
 import { Bouquet } from "./Bouquet";
-import { CatStickers } from "./CatStickers";
 import { Letter } from "./Letter";
 import { Notebook, type ScrapbookPhoto } from "./Notebook";
 import { FlappyBird } from "./FlappyBird";
@@ -50,13 +49,13 @@ export function Home({ photos, blackDog, whiteDog, reduceMotion, onReplay }: Hom
               <span className="sticker sticker-star"><i /></span>
               <span className="sticker sticker-disco"><i /></span>
               <span className="sticker sticker-bow"><i /><b /></span>
-              <span className="sticker sticker-heart">♥</span>
-              <span className="sticker sticker-sparkle">✦</span>
-              <span className="sticker sticker-lilac-flower">✿</span>
-              <span className="sticker sticker-mini-sparkle">✧</span>
-              <span className="sticker sticker-outline-heart">♡</span>
+              <span className="sticker sticker-heart paper-icon paper-icon-heart" />
+              <span className="sticker sticker-sparkle paper-icon paper-icon-star" />
+              <span className="sticker sticker-lilac-flower paper-icon paper-icon-bloom" />
+              <span className="sticker sticker-mini-sparkle paper-icon paper-icon-diamond" />
+              <span className="sticker sticker-outline-heart paper-icon paper-icon-butterfly" />
             </div>
-            <CatStickers />
+            <span className="hero-floral illustrated-sticker art-flowers" aria-hidden="true" />
             <div className="surprise">
               <Bouquet />
               <motion.img

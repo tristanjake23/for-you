@@ -23,7 +23,14 @@ const illustrations = [
   ["flowers", 83, 53, 5, -14], ["flowers", 93, 26, 5, 14], ["butterfly", 61, 8, 5, 21],
   ["pot", 43, 14, 5, -19], ["flowers", 39, 30, 5, 16], ["butterfly", 11, 23, 5, -15],
   ["flowers", 72, 7, 6, 9], ["pot", 70, 86, 5, -12], ["flowers", 59, 67, 5, 16],
+  ["daisy", 16, 11, 7, -16], ["lavender", 30, 28, 7, 12], ["poppy", 39, 17, 6, -10],
+  ["daisy", 66, 31, 7, 18], ["poppy", 84, 23, 7, -13], ["lavender", 95, 35, 8, 17],
+  ["poppy", 16, 50, 7, 10], ["lavender", 22, 59, 8, -20], ["daisy", 10, 70, 7, -18],
+  ["poppy", 45, 82, 6, -14], ["daisy", 68, 82, 8, -13], ["lavender", 88, 72, 8, 19],
+  ["daisy", 95, 61, 6, 15], ["poppy", 79, 96, 7, 11], ["lavender", 22, 87, 6, -21],
 ] as const;
+
+const botanicalKinds = new Set(["daisy", "lavender", "poppy"]);
 
 export function GiftWallpaper({ paused }: { paused: boolean }) {
   return (
@@ -42,6 +49,8 @@ export function GiftWallpaper({ paused }: { paused: boolean }) {
             const dogImage = dogImages[kind];
             return dogImage ? (
               <img key={index} className="wallpaper-sticker wallpaper-dog" src={dogImage} alt="" style={style} />
+            ) : botanicalKinds.has(kind) ? (
+              <span key={index} className={`wallpaper-sticker botanical botanical-${kind}`} style={style}><i /></span>
             ) : (
               <span key={index} className={`wallpaper-sticker illustrated-sticker art-${kind}`} style={style} />
             );

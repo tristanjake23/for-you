@@ -73,11 +73,6 @@
   text-shadow: 0 2px 0 #582675a0;
 }
 
-.sky-pink { color: #ffc4e8; }
-.sky-lilac { color: #ddc5ff; }
-.sky-gold { color: #ffe19a; }
-.sky-ice { color: #ccecff; }
-.sky-peach { color: #ffd0cb; }
 
 @keyframes cloud-drift {
   from { transform: translate3d(-2vw, 0, 0); }
@@ -108,3 +103,15 @@
   animation-duration: 13s;
   animation-delay: -9s;
 }
+
+.sky-sticker.paper-icon {
+  position: absolute;
+  font-size: clamp(0.8rem, calc(var(--sticker-size) * 0.68 + 0.4vw), var(--sticker-size));
+  opacity: 0.73;
+}
+
+.sky-pink { --icon-color: #eba2bd; }
+.sky-lilac { --icon-color: #c4a7e6; }
+.sky-gold { --icon-color: #edc489; }
+.sky-ice { --icon-color: #b6dbea; }
+.sky-peach { --icon-color: #e5af9e; }

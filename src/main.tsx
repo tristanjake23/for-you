@@ -1,5 +1,5 @@
-import { MotionConfig, motion, useReducedMotion } from "motion/react";
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { MotionConfig, motion, useReducedMotion, useSpring } from "motion/react";
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import { preload } from "react-dom";
 import { createRoot } from "react-dom/client";
 import blackDog from "./assets/black-dog.webp";
@@ -38,6 +38,21 @@ function App() {
   const music = useRef<HTMLAudioElement>(null);
   const reduceMotion = useReducedMotion() ?? false;
   const isOpening = stage === "opening" || stage === "blooming";
+  const cardTiltX = useSpring(0, { stiffness: 130, damping: 24 });
+  const cardTiltY = useSpring(0, { stiffness: 130, damping: 24 });
+
+  function resetGiftTilt() {
+    cardTiltX.set(0);
+    cardTiltY.set(0);
+  }
+
+  function tiltGift(event: PointerEvent<HTMLElement>) {
+    if (reduceMotion || isOpening || event.pointerType !== "mouse") return;
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    cardTiltX.set((0.5 - (event.clientY - rect.top) / rect.height) * 12);
+    cardTiltY.set(((event.clientX - rect.left) / rect.width - 0.5) * 14);
+  }
 
   preload(flowerSprites, { as: "image" });
   preload(blackDog, { as: "image" });
@@ -52,6 +67,7 @@ function App() {
 
   function openGift() {
     if (stage !== "closed") return;
+    resetGiftTilt();
 
     // Retry within the tap if the browser blocked playback on page load.
     const player = music.current;
@@ -82,9 +98,9 @@ function App() {
           onReplay={replay}
         />
       ) : (
-        <main className="gift-screen">
+        <main className="gift-screen" onPointerMove={tiltGift} onPointerLeave={resetGiftTilt}>
           <GiftWallpaper paused={isOpening} />
-          <div className="gift-card">
+          <motion.div className="gift-card" style={{ rotateX: cardTiltX, rotateY: cardTiltY }}>
             <h1>For you, <em>love.</em></h1>
             <div className="gift-stage">
               <button
@@ -133,7 +149,7 @@ function App() {
                 <span className="button-label">{isOpening ? "Opening…" : "Open your gift"}</span>
               </button>
             </div>
-          </div>
+          </motion.div>
           {stage === "blooming" && <FlowerCurtain onComplete={() => setStage("revealed")} />}
         </main>
       )}

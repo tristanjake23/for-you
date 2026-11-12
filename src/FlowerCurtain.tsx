@@ -33,15 +33,15 @@ const curtain: Variants = {
 };
 
 const rowBloom: Variants = {
-  hidden: { opacity: 0, transform: "translateY(-35px) scale(0.86)" },
+  hidden: { opacity: 0, transform: "translateY(-74px) scale(0.76)" },
   finished: (row: number) => ({
     opacity: 1,
     transform: [
-      "translateY(-35px) scale(0.86)",
-      "translateY(3px) scale(1.025)",
+      "translateY(-74px) scale(0.76)",
+      "translateY(7px) scale(1.04)",
       "translateY(0px) scale(1)",
     ],
-    transition: { delay: row * 0.09, duration: 0.48, ease: "easeOut" },
+    transition: { delay: row * 0.084, duration: 0.52, ease: "easeOut" },
   }),
 };
 
