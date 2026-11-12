@@ -1,0 +1,116 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color: #45252f;
+  background: #f9eeeb;
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  min-width: 280px;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at top, #fffaf3, #f9eeeb 62%, #f0d7d8);
+}
+
+main {
+  box-sizing: border-box;
+  width: min(100%, 37rem);
+  margin-inline: auto;
+  padding: clamp(3.5rem, 13vh, 8rem) 1.25rem 3rem;
+  text-align: center;
+}
+
+h1, h2 {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(3.1rem, 12vw, 6rem);
+  letter-spacing: -0.055em;
+  margin-bottom: 2rem;
+}
+
+.envelope-button {
+  display: inline-grid;
+  gap: 1.35rem;
+  justify-items: center;
+  max-width: 100%;
+  border: 0;
+  padding: 0.65rem;
+  border-radius: 1rem;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.envelope-button:focus-visible {
+  outline: 2px solid #8b3c53;
+  outline-offset: 0.3rem;
+}
+
+.envelope {
+  display: grid;
+  place-items: center;
+  position: relative;
+  width: min(66vw, 16rem);
+  aspect-ratio: 1.55;
+  perspective: 600px;
+  border-radius: 0.3rem;
+  background: #de999f;
+  box-shadow: 0 0.85rem 1.8rem #6f273a26;
+}
+
+.envelope::before,
+.envelope-flap {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.envelope::before {
+  content: "";
+  background: #edb6b4;
+  clip-path: polygon(0 0, 50% 62%, 100% 0, 100% 100%, 0 100%);
+}
+
+.envelope-flap {
+  background: #e7a8a8;
+  clip-path: polygon(0 0, 100% 0, 50% 67%);
+  transform-origin: top;
+}
+
+.seal {
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2.45rem;
+  height: 2.45rem;
+  margin-top: 16%;
+  color: #fff3e8;
+  background: #89394e;
+  border: 2px solid #a44b5f;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px #6f273a40;
+}
+
+.button-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+article {
+  margin: 1.35rem auto 0;
+  max-width: 20rem;
+  padding: 1.7rem;
+  background: #fffcf5;
+  border: 1px solid #e6cbc6;
+  border-radius: 0.55rem;
+}
+
+article p {
+  margin-bottom: 0;
+  line-height: 1.65;
+}
