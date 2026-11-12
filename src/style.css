@@ -1,8 +1,8 @@
 :root {
   font-family: system-ui, sans-serif;
-  color: #45252f;
-  background: #f9eeeb;
-  color-scheme: light;
+  color: #fff6ff;
+  background: #231137;
+  color-scheme: dark;
 }
 
 body {
@@ -10,14 +10,21 @@ body {
   min-width: 280px;
   min-height: 100vh;
   background: radial-gradient(ellipse at top, #fffaf3, #f9eeeb 62%, #f0d7d8);
+  background:
+    radial-gradient(ellipse at 17% 8%, #a23d986b, transparent 42%),
+    radial-gradient(ellipse at 83% 32%, #5e59d884, transparent 51%),
+    radial-gradient(ellipse at 70% 98%, #d54f985f, transparent 46%),
+    linear-gradient(155deg, #21102f 2%, #472574 55%, #291449 100%);
 }
 
 main {
   box-sizing: border-box;
-  width: min(100%, 37rem);
   margin-inline: auto;
   padding: clamp(3.5rem, 13vh, 8rem) 1.25rem 3rem;
   text-align: center;
+  position: relative;
+  width: min(100%, 47rem);
+  padding-top: clamp(3.7rem, 15vh, 9rem);
 }
 
 h1, h2 {
@@ -30,6 +37,7 @@ h1 {
   font-size: clamp(3.1rem, 12vw, 6rem);
   letter-spacing: -0.055em;
   margin-bottom: 2rem;
+  text-shadow: 0 0.15em 0.45em #22103775;
 }
 
 .envelope-button {
@@ -49,6 +57,7 @@ h1 {
 .envelope-button:focus-visible {
   outline: 2px solid #8b3c53;
   outline-offset: 0.3rem;
+  outline-color: #fbd88c;
 }
 
 .envelope {
@@ -59,8 +68,8 @@ h1 {
   aspect-ratio: 1.55;
   perspective: 600px;
   border-radius: 0.3rem;
-  background: #de999f;
-  box-shadow: 0 0.85rem 1.8rem #6f273a26;
+  background: #b16abb;
+  box-shadow: 0 1rem 2.4rem #180b2a85, 0 0 2.7rem #f494db47;
 }
 
 .envelope::before,
@@ -68,12 +77,13 @@ h1 {
   position: absolute;
   inset: 0;
   border-radius: inherit;
+  background: linear-gradient(155deg, #fbdbf6, #dea8e9 72%, #c990de);
 }
 
 .envelope::before {
   content: "";
-  background: #edb6b4;
   clip-path: polygon(0 0, 50% 62%, 100% 0, 100% 100%, 0 100%);
+  background: linear-gradient(125deg, #eed2fd, #f6b3d3 60%, #cf97e4);
 }
 
 .envelope-flap {
@@ -89,16 +99,22 @@ h1 {
   width: 2.45rem;
   height: 2.45rem;
   margin-top: 16%;
-  color: #fff3e8;
-  background: #89394e;
   border: 2px solid #a44b5f;
   border-radius: 50%;
   box-shadow: 0 2px 5px #6f273a40;
+  color: #fff3e8;
+  background: #8c346e;
+  border-color: #cb77ac;
 }
 
 .button-label {
   font-size: 0.95rem;
   font-weight: 600;
+  color: #fff4ff;
+  background: #29153cbb;
+  border: 1px solid #f1c5ed70;
+  border-radius: 99px;
+  padding: 0.55rem 1rem;
 }
 
 article {
@@ -108,9 +124,106 @@ article {
   background: #fffcf5;
   border: 1px solid #e6cbc6;
   border-radius: 0.55rem;
+  position: relative;
+  color: #40264c;
+  background:
+    repeating-linear-gradient(transparent 0 1.61rem, #b793cb25 1.61rem 1.67rem),
+    #fff4f8;
+  border-color: #efc9ef;
+  box-shadow: 0 0.8rem 2rem #200d4670;
 }
 
 article p {
   margin-bottom: 0;
   line-height: 1.65;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 25% 37%, #f6bbfb 0 1px, transparent 1.7px) 0 0 / 103px 111px,
+    radial-gradient(circle at 70% 66%, #b9a5ff 0 1px, transparent 1.7px) 0 0 / 137px 147px,
+    radial-gradient(circle at 55% 20%, #fbd88c 0 1px, transparent 1.8px) 0 0 / 191px 172px;
+  opacity: 0.45;
+}
+
+h1 em {
+  color: #f8bae5;
+  font-weight: inherit;
+}
+
+.is-revealed {
+  padding-top: clamp(1.5rem, 5vh, 3rem);
+}
+
+.is-revealed h1 {
+  margin-bottom: 0.6rem;
+  font-size: clamp(2.5rem, 8vw, 4.3rem);
+}
+
+.is-revealed .envelope {
+  display: none;
+}
+
+.scrap-heart {
+  position: absolute;
+  z-index: -1;
+  font-size: clamp(2rem, 8vw, 4rem);
+  line-height: 1;
+  text-shadow: 0 0.2em 0.6em #1f0e4280;
+}
+
+.scrap-heart-left {
+  top: 14%;
+  left: 9%;
+  color: #f79fce;
+  rotate: -15deg;
+}
+
+.scrap-heart-right {
+  top: 7%;
+  right: 10%;
+  color: #ffe29e;
+  rotate: 12deg;
+}
+
+article::before {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  left: calc(50% - 2.1rem);
+  width: 4.2rem;
+  height: 1rem;
+  rotate: -5deg;
+  background: #f2acdbce;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  gap: 1.1rem;
+  margin: 2rem auto 0;
+  max-width: 36rem;
+}
+
+.photo-print {
+  margin: 0;
+  padding: 0.48rem 0.48rem 1.3rem;
+  background: #fff2f9;
+  box-shadow: 0 0.35rem 1.1rem #1c0b36a0;
+  rotate: -2deg;
+}
+
+.photo-print:nth-child(even) {
+  rotate: 2deg;
+}
+
+.photo-print img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
 }

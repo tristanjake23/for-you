@@ -5,15 +5,22 @@ import { createRoot } from "react-dom/client";
 import blackDog from "./assets/black-dog.webp";
 import whiteDog from "./assets/white-dog.webp";
 import { Bouquet } from "./Bouquet";
+import { FlowerCurtain } from "./FlowerCurtain";
 import "./style.css";
 
 type RevealStage = "closed" | "opening" | "blooming" | "revealed";
+
+const photoFiles = import.meta.glob<string>("./assets/photos/*.{jpg,jpeg,png,webp}", {
+  eager: true,
+  import: "default",
+  query: "?url",
+});
+const photos = Object.keys(photoFiles).sort().map((path) => photoFiles[path]);
 
 function App() {
   const [stage, setStage] = useState<RevealStage>("closed");
   const reduceMotion = useReducedMotion() ?? false;
   const isOpen = stage !== "closed";
-  const showFlowers = stage === "blooming" || stage === "revealed";
   const showDogs = stage === "revealed";
 
   preload(blackDog, { as: "image" });
@@ -28,8 +35,8 @@ function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <main>
-        <h1>For you, love.</h1>
+      <main className={showDogs ? "is-revealed" : undefined}>
+        <h1>For you, <em>love.</em></h1>
         <button
           className="envelope-button"
           type="button"
@@ -51,35 +58,33 @@ function App() {
           </span>
           <span className="button-label">{isOpen ? "Close the letter" : "Open when you miss me"}</span>
         </button>
+        {stage === "blooming" && (
+          <FlowerCurtain onComplete={() => {
+            setStage((current) => current === "blooming" ? "revealed" : current);
+          }} />
+        )}
         <div id="letter" aria-live="polite">
-          {showFlowers && (
+          {showDogs && (
             <div className="surprise">
-              <Bouquet
-                reduceMotion={reduceMotion}
-                onBloomComplete={() => {
-                  setStage((current) => current === "blooming" ? "revealed" : current);
-                }}
+              <Bouquet />
+              <span className="scrap-heart scrap-heart-left" aria-hidden="true">♥</span>
+              <span className="scrap-heart scrap-heart-right" aria-hidden="true">✦</span>
+              <motion.img
+                className="dog dog-black"
+                src={blackDog}
+                alt="Black dog holding a purple bouquet"
+                initial={reduceMotion ? false : { opacity: 0, x: -34, y: 28, rotate: -12, scale: 0.82 }}
+                animate={{ opacity: 1, x: 0, y: 0, rotate: -6, scale: 1 }}
+                transition={reduceMotion ? { duration: 0 } : { type: "spring", duration: 0.65, bounce: 0.3 }}
               />
-              {showDogs && (
-                <>
-                  <motion.img
-                    className="dog dog-black"
-                    src={blackDog}
-                    alt="Black dog holding a purple bouquet"
-                    initial={reduceMotion ? false : { opacity: 0, x: -34, y: 28, rotate: -12, scale: 0.82 }}
-                    animate={{ opacity: 1, x: 0, y: 0, rotate: -6, scale: 1 }}
-                    transition={reduceMotion ? { duration: 0 } : { type: "spring", duration: 0.65, bounce: 0.3 }}
-                  />
-                  <motion.img
-                    className="dog dog-white"
-                    src={whiteDog}
-                    alt="White dog holding a pink and purple bouquet"
-                    initial={reduceMotion ? false : { opacity: 0, x: 34, y: 28, rotate: 12, scale: 0.82 }}
-                    animate={{ opacity: 1, x: 0, y: 0, rotate: 5, scale: 1 }}
-                    transition={reduceMotion ? { duration: 0 } : { type: "spring", duration: 0.65, bounce: 0.3 }}
-                  />
-                </>
-              )}
+              <motion.img
+                className="dog dog-white"
+                src={whiteDog}
+                alt="White dog holding a pink and purple bouquet"
+                initial={reduceMotion ? false : { opacity: 0, x: 34, y: 28, rotate: 12, scale: 0.82 }}
+                animate={{ opacity: 1, x: 0, y: 0, rotate: 5, scale: 1 }}
+                transition={reduceMotion ? { duration: 0 } : { type: "spring", duration: 0.65, bounce: 0.3 }}
+              />
             </div>
           )}
           <AnimatePresence initial={false}>
@@ -96,6 +101,15 @@ function App() {
               </motion.article>
             )}
           </AnimatePresence>
+          {showDogs && photos.length > 0 && (
+            <section className="photo-grid" aria-label="Our photos">
+              {photos.map((photo, index) => (
+                <figure className="photo-print" key={photo}>
+                  <img src={photo} alt={`Memory ${index + 1}`} loading="lazy" />
+                </figure>
+              ))}
+            </section>
+          )}
         </div>
       </main>
     </MotionConfig>
