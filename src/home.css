@@ -414,3 +414,67 @@
     scroll-behavior: smooth;
   }
 }
+
+.scrapbook {
+  position: relative;
+}
+
+.sticker-lilac-flower,
+.sticker-mini-sparkle,
+.sticker-outline-heart {
+  font-size: clamp(1.4rem, 4vw, 3rem);
+  line-height: 1;
+}
+
+.sticker-lilac-flower {
+  top: 40%;
+  left: 1%;
+  color: #edbeff;
+  rotate: -8deg;
+}
+
+.sticker-mini-sparkle {
+  top: 29%;
+  right: 25%;
+  color: #ffe4a1;
+}
+
+.sticker-outline-heart {
+  top: 23%;
+  left: 30%;
+  color: #ffd4eb;
+  rotate: 12deg;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .stickers {
+    animation: scrapbook-stickers 5.5s ease-in-out infinite alternate;
+  }
+
+  .sticker-star,
+  .sticker-bow {
+    animation: sticker-sway 4.4s ease-in-out infinite alternate;
+  }
+
+  .sticker-bow {
+    animation-delay: -2.4s;
+  }
+
+  .sticker-disco i {
+    animation: disco-turn 11s linear infinite;
+  }
+}
+
+@keyframes scrapbook-stickers {
+  from { transform: translateY(3px); }
+  to { transform: translateY(-7px); }
+}
+
+@keyframes sticker-sway {
+  from { transform: rotate(-7deg); }
+  to { transform: rotate(8deg); }
+}
+
+@keyframes disco-turn {
+  to { transform: rotate(360deg); }
+}

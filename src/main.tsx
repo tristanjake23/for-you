@@ -5,6 +5,7 @@ import { createRoot } from "react-dom/client";
 import blackDog from "./assets/black-dog.webp";
 import flowerSprites from "./assets/flower-sprites.webp";
 import whiteDog from "./assets/white-dog.webp";
+import { AmbientSky } from "./AmbientSky";
 import { FlowerCurtain } from "./FlowerCurtain";
 import { Home } from "./Home";
 import "./style.css";
@@ -24,7 +25,7 @@ const photos = Object.keys(photoFiles).sort().map((path, index) => ({
 function App() {
   const [stage, setStage] = useState<RevealStage>("closed");
   const [hasReplayed, setHasReplayed] = useState(false);
-  const envelopeButton = useRef<HTMLButtonElement>(null);
+  const giftButton = useRef<HTMLButtonElement>(null);
   const reduceMotion = useReducedMotion() ?? false;
   const isOpening = stage === "opening" || stage === "blooming";
 
@@ -35,7 +36,7 @@ function App() {
   useEffect(() => {
     if (stage === "closed" && hasReplayed) {
       window.scrollTo({ top: 0, behavior: "instant" });
-      envelopeButton.current?.focus({ preventScroll: true });
+      giftButton.current?.focus({ preventScroll: true });
     }
   }, [stage, hasReplayed]);
 
@@ -49,6 +50,7 @@ function App() {
 
   return (
     <MotionConfig reducedMotion="user">
+      <AmbientSky paused={isOpening} />
       {stage === "revealed" ? (
         <Home
           photos={photos}
@@ -58,30 +60,34 @@ function App() {
           onReplay={replay}
         />
       ) : (
-        <main className="envelope-screen">
+        <main className="gift-screen">
           <h1>For you, <em>love.</em></h1>
           <button
-            className="envelope-button"
+            className="gift-button"
             type="button"
-            ref={envelopeButton}
+            ref={giftButton}
             aria-disabled={isOpening}
             onClick={() => {
               if (stage === "closed") setStage(reduceMotion ? "revealed" : "opening");
             }}
           >
-            <span className="envelope" aria-hidden="true">
+            <span className="gift-box" aria-hidden="true">
+              <span className="gift-body"><span className="gift-heart">♥</span></span>
               <motion.span
-                className="envelope-flap"
+                className="gift-lid"
                 initial={false}
-                animate={{ rotateX: isOpening ? -180 : 0 }}
-                transition={{ duration: 0.45 }}
+                animate={isOpening
+                  ? { transform: "translate3d(22px, -72px, 0) rotate(17deg)", opacity: 0 }
+                  : { transform: "translate3d(0, 0, 0) rotate(0deg)", opacity: 1 }}
+                transition={{ duration: 0.48, ease: "easeInOut" }}
                 onAnimationComplete={() => {
                   setStage((current) => current === "opening" ? "blooming" : current);
                 }}
-              />
-              <motion.span className="seal" animate={{ opacity: isOpening ? 0 : 1 }}>♥</motion.span>
+              >
+                <span className="gift-bow"><i /><b /></span>
+              </motion.span>
             </span>
-            <span className="button-label">{isOpening ? "Opening…" : "Open when you miss me"}</span>
+            <span className="button-label">{isOpening ? "Opening…" : "Open your gift"}</span>
           </button>
           {stage === "blooming" && <FlowerCurtain onComplete={() => setStage("revealed")} />}
         </main>

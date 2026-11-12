@@ -1,7 +1,7 @@
 :root {
   font-family: system-ui, sans-serif;
-  color: #fff6ff;
-  background: #231137;
+  color: #fff8ff;
+  background: #46207b;
   color-scheme: dark;
 }
 
@@ -9,20 +9,6 @@ body {
   margin: 0;
   min-width: 280px;
   min-height: 100vh;
-  background:
-    radial-gradient(ellipse at 17% 8%, #a23d986b, transparent 42%),
-    radial-gradient(ellipse at 83% 32%, #5e59d884, transparent 51%),
-    radial-gradient(ellipse at 70% 98%, #d54f985f, transparent 46%),
-    linear-gradient(155deg, #21102f 2%, #472574 55%, #291449 100%);
-}
-
-.envelope-screen {
-  box-sizing: border-box;
-  margin-inline: auto;
-  padding: clamp(3.7rem, 15vh, 9rem) 1.25rem 3rem;
-  text-align: center;
-  position: relative;
-  width: min(100%, 47rem);
 }
 
 h1, h2 {
@@ -31,20 +17,40 @@ h1, h2 {
   margin: 0;
 }
 
-.envelope-screen h1 {
-  font-size: clamp(3.1rem, 12vw, 6rem);
-  letter-spacing: -0.055em;
-  margin-bottom: 2rem;
-  text-shadow: 0 0.15em 0.45em #22103775;
+.gift-screen {
+  box-sizing: border-box;
+  position: relative;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  width: min(100%, 47rem);
+  min-height: 100svh;
+  margin-inline: auto;
+  padding: 2rem 1rem 3.6rem;
+  text-align: center;
 }
 
-.envelope-button {
+.gift-screen h1 {
+  position: relative;
+  margin-bottom: 1.4rem;
+  font-size: clamp(3rem, 11vw, 6.7rem);
+  letter-spacing: -0.065em;
+  line-height: 0.96;
+  text-shadow: 0 0.12em 0.46em #361752bf;
+}
+
+.gift-screen h1 em {
+  color: #ffd0eb;
+  font-weight: inherit;
+}
+
+.gift-button {
   display: inline-grid;
-  gap: 1.35rem;
+  gap: 1.25rem;
   justify-items: center;
   max-width: 100%;
   border: 0;
-  padding: 0.65rem;
+  padding: 0.65rem 0.9rem;
   border-radius: 1rem;
   background: transparent;
   color: inherit;
@@ -52,79 +58,143 @@ h1, h2 {
   cursor: pointer;
 }
 
-.envelope-button:focus-visible {
-  outline: 2px solid #fbd88c;
+.gift-button:focus-visible {
+  outline: 2px solid #ffe29e;
   outline-offset: 0.3rem;
 }
 
-.envelope {
+.gift-button[aria-disabled="true"] {
+  cursor: default;
+}
+
+.gift-box {
+  position: relative;
+  display: block;
+  width: min(58vw, 14.5rem);
+  aspect-ratio: 1.17;
+  transform-origin: center 90%;
+  transition: transform 200ms ease-out;
+}
+
+.gift-button:not([aria-disabled="true"]):hover .gift-box {
+  transform: translateY(-4px) rotate(-2deg);
+}
+
+.gift-body,
+.gift-lid {
+  position: absolute;
   display: grid;
   place-items: center;
-  position: relative;
-  width: min(66vw, 16rem);
-  aspect-ratio: 1.55;
-  perspective: 600px;
-  border-radius: 0.3rem;
-  background: #b16abb;
-  box-shadow: 0 1rem 2.4rem #180b2a85, 0 0 2.7rem #f494db47;
+  border: 1px solid #ffd7f0aa;
 }
 
-.envelope::before,
-.envelope-flap {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
+.gift-body {
+  inset: 29% 5% 0;
+  border-radius: 0.25rem 0.25rem 0.65rem 0.65rem;
+  background:
+    radial-gradient(circle, #fff2fa8c 0 1px, transparent 1.8px) 2px 2px / 17px 17px,
+    linear-gradient(135deg, #f8a9d9, #d66aa9 72%, #b34e90);
+  box-shadow: inset -0.7rem -0.4rem 1.2rem #8e387c57, 0 0.95rem 1.45rem #35144880;
 }
 
-.envelope::before {
+.gift-body::before,
+.gift-lid::after {
   content: "";
-  clip-path: polygon(0 0, 50% 62%, 100% 0, 100% 100%, 0 100%);
-  background: linear-gradient(125deg, #eed2fd, #f6b3d3 60%, #cf97e4);
+  position: absolute;
+  inset: 0 40%;
+  background: linear-gradient(90deg, #7845ac, #b18ce6 50%, #8150ba);
 }
 
-.envelope-flap {
-  background: linear-gradient(155deg, #fbdbf6, #dea8e9 72%, #c990de);
-  clip-path: polygon(0 0, 100% 0, 50% 67%);
-  transform-origin: top;
+.gift-lid {
+  inset: 22% 0 auto;
+  height: 22%;
+  border-radius: 0.46rem;
+  background: linear-gradient(180deg, #ffd1ec, #f19ac9 66%, #dd80b7);
+  box-shadow: 0 0.35rem 0.4rem #70244c44;
 }
 
-.seal {
+.gift-lid::after {
+  border-radius: 2px;
+}
+
+.gift-heart {
+  position: relative;
   z-index: 1;
   display: grid;
   place-items: center;
   width: 2.45rem;
-  height: 2.45rem;
-  margin-top: 16%;
-  border: 2px solid #cb77ac;
+  aspect-ratio: 1;
+  border: 1px solid #fff6db;
   border-radius: 50%;
-  box-shadow: 0 2px 5px #6f273a40;
-  color: #fff3e8;
-  background: #8c346e;
+  background: #ffddaa;
+  color: #a54478;
+  font-size: 1.15rem;
+  box-shadow: 0 3px 6px #74326a66;
+}
+
+.gift-bow {
+  position: absolute;
+  z-index: 1;
+  left: 26%;
+  bottom: 91%;
+  display: grid;
+  place-items: end center;
+  width: 48%;
+  height: 104%;
+}
+
+.gift-bow::before,
+.gift-bow::after {
+  content: "";
+  position: absolute;
+  width: 49%;
+  height: 87%;
+  bottom: 0;
+  border: 1px solid #f4c5ff99;
+  background: linear-gradient(165deg, #c9a5ef, #915ec5 56%, #6c369c);
+  box-shadow: inset 0 -0.32rem 0.4rem #673e9b66;
+}
+
+.gift-bow::before {
+  left: 1%;
+  border-radius: 41% 76% 36% 48%;
+  rotate: 17deg;
+}
+
+.gift-bow::after {
+  right: 1%;
+  border-radius: 76% 41% 48% 36%;
+  rotate: -17deg;
+}
+
+.gift-bow i {
+  z-index: 1;
+  width: 20%;
+  height: 45%;
+  border-radius: 0.3rem;
+  background: linear-gradient(#c5a1ea, #844bb6);
+}
+
+.gift-bow b {
+  position: absolute;
+  top: 89%;
+  width: 65%;
+  height: 64%;
+  clip-path: polygon(19% 0, 81% 0, 100% 100%, 72% 73%, 50% 29%, 28% 73%, 0 100%);
+  background: #a270d2;
 }
 
 .button-label {
+  padding: 0.68rem 1.22rem;
+  border: 1px solid #f8d7f2ad;
+  border-radius: 99px;
+  background: #50236f;
+  color: #fff5ff;
   font-size: 0.95rem;
   font-weight: 600;
-  color: #fff4ff;
-  background: #29153cbb;
-  border: 1px solid #f1c5ed70;
-  border-radius: 99px;
-  padding: 0.55rem 1rem;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 25% 37%, #f6bbfb 0 1px, transparent 1.7px) 0 0 / 103px 111px,
-    radial-gradient(circle at 70% 66%, #b9a5ff 0 1px, transparent 1.7px) 0 0 / 137px 147px,
-    radial-gradient(circle at 55% 20%, #fbd88c 0 1px, transparent 1.8px) 0 0 / 191px 172px;
-  opacity: 0.45;
-}
-
-.envelope-screen h1 em {
-  color: #f8bae5;
-  font-weight: inherit;
+@media (prefers-reduced-motion: reduce) {
+  .gift-box { transition: none; }
+  .gift-button:not([aria-disabled="true"]):hover .gift-box { transform: none; }
 }

@@ -1,0 +1,105 @@
+.ambient-sky {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 9% 14%, #eb83db9c, transparent 38%),
+    radial-gradient(ellipse at 90% 20%, #8aa3ff9c, transparent 49%),
+    radial-gradient(ellipse at 75% 96%, #d059b294, transparent 53%),
+    linear-gradient(145deg, #6b37a3 1%, #512487 48%, #341658 100%);
+}
+
+.sky-cloud {
+  position: absolute;
+  width: clamp(17rem, 48vw, 44rem);
+  aspect-ratio: 2.75;
+  opacity: 0.43;
+  background:
+    radial-gradient(ellipse at 26% 65%, #ffe2fb 0 38%, transparent 64%) 0 45% / 52% 74%,
+    radial-gradient(ellipse at 47% 70%, #f8ccfc 0 40%, transparent 66%) 31% 2% / 64% 95%,
+    radial-gradient(ellipse at 48% 62%, #efddff 0 38%, transparent 66%) 99% 53% / 45% 66%,
+    radial-gradient(ellipse at 48% 41%, #c5b8ff 0 31%, transparent 66%) 40% 95% / 92% 67%;
+  background-repeat: no-repeat;
+  animation: cloud-drift 22s ease-in-out infinite alternate;
+}
+
+.cloud-upper {
+  top: 8%;
+  left: -14%;
+}
+
+.cloud-side {
+  top: 36%;
+  right: -18%;
+  opacity: 0.38;
+  animation-duration: 27s;
+  animation-delay: -12s;
+  animation-direction: alternate-reverse;
+}
+
+.cloud-low {
+  left: 9%;
+  bottom: -10%;
+  opacity: 0.33;
+  animation-duration: 31s;
+  animation-delay: -16s;
+}
+
+.sky-sticker-layer {
+  position: absolute;
+  inset: 0;
+  animation: sticker-drift 9s ease-in-out infinite alternate;
+}
+
+.sky-sticker-layer:nth-of-type(2) {
+  animation-duration: 12s;
+  animation-delay: -5s;
+  animation-direction: alternate-reverse;
+}
+
+.sky-sticker-layer:nth-of-type(3) {
+  animation-duration: 15s;
+  animation-delay: -7s;
+}
+
+.sky-sticker {
+  position: absolute;
+  font-size: clamp(0.8rem, calc(var(--sticker-size) * 0.68 + 0.4vw), var(--sticker-size));
+  line-height: 1;
+  translate: -50% -50%;
+  rotate: var(--sticker-angle);
+  text-shadow: 0 2px 0 #582675a0;
+}
+
+.sky-pink { color: #ffc4e8; }
+.sky-lilac { color: #ddc5ff; }
+.sky-gold { color: #ffe19a; }
+.sky-ice { color: #ccecff; }
+.sky-peach { color: #ffd0cb; }
+
+@keyframes cloud-drift {
+  from { transform: translate3d(-2vw, 0, 0); }
+  to { transform: translate3d(10vw, -1.5vh, 0); }
+}
+
+@keyframes sticker-drift {
+  from { transform: translate3d(-4px, 5px, 0) rotate(-1deg); }
+  to { transform: translate3d(8px, -13px, 0) rotate(2deg); }
+}
+
+.ambient-sky.is-paused > * {
+  animation-play-state: paused;
+}
+
+@media (max-width: 550px) {
+  .cloud-upper { left: -32%; }
+  .cloud-side { right: -34%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-sky > * {
+    animation: none;
+  }
+}

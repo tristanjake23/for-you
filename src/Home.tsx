@@ -47,6 +47,9 @@ export function Home({ photos, blackDog, whiteDog, reduceMotion, onReplay }: Hom
               <span className="sticker sticker-bow"><i /><b /></span>
               <span className="sticker sticker-heart">♥</span>
               <span className="sticker sticker-sparkle">✦</span>
+              <span className="sticker sticker-lilac-flower">✿</span>
+              <span className="sticker sticker-mini-sparkle">✧</span>
+              <span className="sticker sticker-outline-heart">♡</span>
             </div>
             <div className="surprise">
               <Bouquet />
