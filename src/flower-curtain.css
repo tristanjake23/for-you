@@ -49,6 +49,6 @@
 
 @media (max-width: 650px) {
   .curtain-flower {
-    width: clamp(6.2rem, var(--diameter), 10rem);
+    width: clamp(6rem, var(--diameter), 12rem);
   }
 }

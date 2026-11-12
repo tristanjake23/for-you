@@ -1,0 +1,416 @@
+.scrapbook {
+  --pink: #ffc2e4;
+  --cream: #ffe8b4;
+  --lavender: #e2c7ff;
+  max-width: 75rem;
+  margin-inline: auto;
+  padding: 0 clamp(1rem, 5vw, 3.5rem);
+}
+
+.scrapbook-header,
+.scrapbook-header nav {
+  display: flex;
+  align-items: center;
+}
+
+.scrapbook-header {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.3rem;
+  min-height: 4.25rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #f1c5ed35;
+}
+
+.scrapbook-header nav {
+  gap: clamp(1rem, 4vw, 2rem);
+}
+
+.scrapbook-header a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.scrapbook-header a:hover {
+  color: var(--pink);
+}
+
+.scrapbook-brand {
+  font: italic clamp(1.15rem, 4vw, 1.5rem) Georgia, serif;
+}
+
+.scrapbook-brand span {
+  color: #ffa8d2;
+}
+
+.scrapbook-header nav a {
+  font-size: 0.9rem;
+}
+
+.scrapbook-hero {
+  display: grid;
+  align-items: center;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 0.75rem;
+  min-height: clamp(26rem, 70svh, 43rem);
+  overflow: clip;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 0;
+}
+
+.hero-copy h1 {
+  max-width: 7em;
+  font-size: clamp(3.5rem, 8vw, 8.7rem);
+  line-height: 0.88;
+  letter-spacing: -0.075em;
+  text-shadow: 0 0.1em 0.45em #1b10207d;
+}
+
+.hero-copy h1:focus {
+  outline: none;
+}
+
+.hero-copy em {
+  display: block;
+  color: var(--pink);
+}
+
+.photo-link,
+.replay-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.72rem 1.12rem;
+  border: 1px solid #efb3e384;
+  border-radius: 99px;
+  background: #3a2059;
+  color: #fff6ff;
+  font: 600 0.91rem system-ui, sans-serif;
+  text-decoration: none;
+}
+
+.photo-link {
+  margin-top: 1.8rem;
+}
+
+.photo-link span {
+  color: var(--cream);
+}
+
+.photo-link:hover,
+.replay-button:hover {
+  background: #60347d;
+}
+
+.scrapbook-scene {
+  position: relative;
+  display: grid;
+  place-items: end center;
+  min-height: clamp(22rem, 48vw, 35rem);
+  background: radial-gradient(ellipse at 51% 62%, #ef83e33b, transparent 64%);
+}
+
+.scrapbook-scene .surprise {
+  width: min(100%, 33rem);
+  height: clamp(13rem, 29vw, 21rem);
+  margin-bottom: 0.8rem;
+}
+
+.scrapbook-scene .dog-white {
+  width: 46%;
+  right: 4%;
+}
+
+.scrapbook-scene .dog-black {
+  width: 51%;
+  left: 1%;
+  height: 77%;
+}
+
+.stickers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sticker {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 0.6rem 0.4rem #180e36a0);
+}
+
+.sticker-star {
+  left: 2%;
+  top: 19%;
+  width: clamp(5.2rem, 15vw, 10rem);
+  aspect-ratio: 1;
+  rotate: -14deg;
+}
+
+.sticker-star::before,
+.sticker-star i {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(50% 0, 63% 34%, 100% 38%, 72% 63%, 81% 100%, 50% 80%, 19% 100%, 28% 63%, 0 38%, 37% 34%);
+}
+
+.sticker-star::before {
+  content: "";
+  background: #fff3cc;
+}
+
+.sticker-star i {
+  scale: 0.9;
+  background:
+    radial-gradient(ellipse at 24% 32%, #8a4b34 0 12%, #3c2630 13% 20%, transparent 22%) 0 0 / 22px 19px,
+    radial-gradient(ellipse at 75% 65%, #ae7451 0 12%, #3c2630 13% 21%, transparent 22%) 0 0 / 26px 24px,
+    #d19d6c;
+}
+
+.sticker-disco {
+  width: clamp(4.2rem, 11vw, 7rem);
+  aspect-ratio: 1;
+  right: 6%;
+  top: 10%;
+  rotate: 16deg;
+}
+
+.sticker-disco i {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 7px, #5b4e886e 8px 9px),
+    repeating-linear-gradient(90deg, transparent 0 7px, #57497c65 8px 9px),
+    radial-gradient(circle at 31% 24%, #fff9ff, #d3c5ff 33%, #a496da 52%, #5a3c8e 76%);
+  border: 2px solid #fff0ffb0;
+}
+
+.sticker-disco::before {
+  content: "";
+  position: absolute;
+  left: 49%;
+  bottom: 100%;
+  width: 2px;
+  height: 2.4rem;
+  background: #f7d8ff8a;
+}
+
+.sticker-bow {
+  top: 9%;
+  left: 43%;
+  width: clamp(3.4rem, 8vw, 6rem);
+  aspect-ratio: 1.4;
+  rotate: -10deg;
+  color: #ff9fca;
+}
+
+.sticker-bow::before,
+.sticker-bow::after {
+  content: "";
+  position: absolute;
+  top: 10%;
+  width: 51%;
+  height: 58%;
+  background: linear-gradient(#ffd4eb, #f089bd 67%, #bc4b89);
+}
+
+.sticker-bow::before {
+  left: 0;
+  border-radius: 26% 76% 59% 24%;
+  rotate: 10deg;
+}
+
+.sticker-bow::after {
+  right: 0;
+  border-radius: 76% 26% 24% 59%;
+  rotate: -10deg;
+}
+
+.sticker-bow i {
+  z-index: 1;
+  width: 18%;
+  height: 33%;
+  margin-top: -15%;
+  border-radius: 33%;
+  background: #f6a9d0;
+  box-shadow: inset 0 -2px 3px #af4688b0;
+}
+
+.sticker-bow b {
+  position: absolute;
+  width: 58%;
+  height: 64%;
+  bottom: 0;
+  clip-path: polygon(22% 0, 78% 0, 100% 100%, 72% 83%, 50% 40%, 29% 83%, 0 100%);
+  background: #f58dc5;
+}
+
+.sticker-heart,
+.sticker-sparkle {
+  line-height: 1;
+  font-size: clamp(2rem, 5vw, 4.5rem);
+}
+
+.sticker-heart {
+  color: #ff9cc7;
+  right: 4%;
+  top: 50%;
+  rotate: 18deg;
+}
+
+.sticker-sparkle {
+  color: #ffdc92;
+  left: 4%;
+  bottom: 13%;
+}
+
+.love-note {
+  position: relative;
+  width: min(100%, 33rem);
+  box-sizing: border-box;
+  margin: 0 auto 0;
+  padding: clamp(1.4rem, 5vw, 2.35rem);
+  border: 1px solid #f5cced;
+  border-radius: 0.45rem;
+  background: repeating-linear-gradient(transparent 0 1.62rem, #b793cb22 1.62rem 1.69rem), #fff1f7;
+  box-shadow: 0 1.2rem 2rem #1b102780;
+  color: #452347;
+  text-align: center;
+  rotate: -1deg;
+}
+
+.love-note::before {
+  content: "";
+  position: absolute;
+  top: -0.55rem;
+  left: calc(50% - 2.5rem);
+  width: 5rem;
+  height: 1.1rem;
+  rotate: -5deg;
+  background: #efa4d5de;
+}
+
+.love-note h2 {
+  font-size: clamp(1.65rem, 4vw, 2.45rem);
+}
+
+.love-note p {
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+.gallery {
+  margin: clamp(4.6rem, 10vw, 8rem) auto 0;
+  max-width: 57rem;
+  scroll-margin-top: 1.3rem;
+}
+
+.gallery h2 {
+  color: var(--lavender);
+  font-size: clamp(2.7rem, 7vw, 5rem);
+  letter-spacing: -0.05em;
+  text-align: center;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
+  margin: 1.5rem auto 0;
+}
+
+.photo-print {
+  width: min(100%, 20rem);
+  box-sizing: border-box;
+  justify-self: center;
+  margin: 0;
+  padding: 0.52rem 0.52rem 1.3rem;
+  background: #fff0f9;
+  box-shadow: 0 0.65rem 1.35rem #1c0b36a0;
+  rotate: -2deg;
+}
+
+.photo-print:nth-child(even) {
+  rotate: 2deg;
+}
+
+.photo-print img,
+.photo-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+}
+
+.photo-print img {
+  display: block;
+  object-fit: cover;
+}
+
+.photo-placeholder {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  border: 1px dashed #aa77ba;
+  background: radial-gradient(ellipse at 26% 21%, #fce0f1, #dec6f1 73%, #d1b7ea);
+  color: #854b94;
+  font-size: clamp(2.3rem, 7vw, 4rem);
+}
+
+.scrapbook-footer {
+  padding: 3.6rem 0 2.6rem;
+  text-align: center;
+}
+
+.replay-button {
+  cursor: pointer;
+}
+
+.scrapbook :is(a, button):focus-visible {
+  outline: 2px solid var(--cream);
+  outline-offset: 4px;
+}
+
+@media (max-width: 660px) {
+  .scrapbook-hero {
+    grid-template-columns: 1fr;
+    gap: 0;
+    min-height: 0;
+  }
+
+  .hero-copy {
+    padding: 2.3rem 0 0;
+    text-align: center;
+  }
+
+  .hero-copy h1 {
+    margin-inline: auto;
+  }
+
+  .photo-link {
+    margin-top: 1.15rem;
+  }
+
+  .scrapbook-scene {
+    min-height: clamp(15.5rem, 64vw, 22rem);
+    margin: 0.75rem 0 1.45rem;
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  }
+
+  .photo-print {
+    padding-bottom: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
