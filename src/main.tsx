@@ -1,5 +1,5 @@
 import { MotionConfig, motion, useReducedMotion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { preload } from "react-dom";
 import { createRoot } from "react-dom/client";
 import blackDog from "./assets/black-dog.webp";
@@ -61,7 +61,7 @@ function App() {
   }
 
   function replay() {
-    if (window.location.hash === "#home" || window.location.hash === "#photos") {
+    if (["#home", "#letter", "#photos"].includes(window.location.hash)) {
       window.history.replaceState(window.history.state, "", window.location.pathname + window.location.search);
     }
     setHasReplayed(true);
@@ -92,14 +92,34 @@ function App() {
               onClick={openGift}
             >
               <span className="gift-box" aria-hidden="true">
+                <span className="gift-halo" />
+                <span className="gift-sparkle gift-sparkle-left">✦</span>
+                <span className="gift-sparkle gift-sparkle-right">✧</span>
                 <span className="gift-body"><span className="gift-heart">♥</span></span>
+                {isOpening && (
+                  <span className="gift-burst">
+                    {["♥", "✦", "✧", "♥", "✦", "✧", "♥", "✦"].map((mark, index) => (
+                      <span key={index} style={{
+                        "--burst-angle": `${-146 + index * 42}deg`,
+                        "--burst-distance": `${44 + (index % 3) * 14}px`,
+                      } as CSSProperties}>{mark}</span>
+                    ))}
+                  </span>
+                )}
                 <motion.span
                   className="gift-lid"
                   initial={false}
                   animate={isOpening
-                    ? { transform: "translate3d(22px, -72px, 0) rotate(17deg)", opacity: 0 }
+                    ? {
+                      transform: [
+                        "translate3d(0, 0, 0) rotate(0deg)",
+                        "translate3d(-8px, -48px, 0) rotate(-12deg)",
+                        "translate3d(33px, -94px, 0) rotate(22deg)",
+                      ],
+                      opacity: [1, 1, 0],
+                    }
                     : { transform: "translate3d(0, 0, 0) rotate(0deg)", opacity: 1 }}
-                  transition={{ duration: 0.48, ease: "easeInOut" }}
+                  transition={{ duration: 0.59, times: [0, 0.46, 1], ease: "easeInOut" }}
                   onAnimationComplete={() => {
                     setStage((current) => current === "opening" ? "blooming" : current);
                   }}

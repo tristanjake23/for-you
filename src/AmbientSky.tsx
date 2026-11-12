@@ -36,6 +36,12 @@ const stickerGroups = [
     { mark: "🌙", x: 77, y: 14, color: "gold", size: 28, angle: 13 },
     { mark: "🎀", x: 85, y: 83, color: "pink", size: 30, angle: 14 },
     { mark: "♡", x: 92, y: 31, color: "ice", size: 24, angle: 19 },
+    { mark: "🦋", x: 7, y: 64, color: "ice", size: 28, angle: -17 },
+    { mark: "💌", x: 25, y: 17, color: "pink", size: 25, angle: 13 },
+    { mark: "🌸", x: 34, y: 88, color: "peach", size: 26, angle: -12 },
+    { mark: "💖", x: 64, y: 14, color: "pink", size: 29, angle: -8 },
+    { mark: "🫧", x: 76, y: 92, color: "ice", size: 28, angle: 11 },
+    { mark: "🦋", x: 91, y: 46, color: "lilac", size: 27, angle: 13 },
   ],
 ];
 

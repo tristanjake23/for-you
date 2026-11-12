@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useEffect, useRef } from "react";
 import { Bouquet } from "./Bouquet";
 import { CatStickers } from "./CatStickers";
+import { Letter } from "./Letter";
 import "./home.css";
 
 interface HomeProps {
@@ -30,6 +31,7 @@ export function Home({ photos, blackDog, whiteDog, reduceMotion, onReplay }: Hom
         <a className="scrapbook-brand" href="#home">For Bembem <span aria-hidden="true">♥</span></a>
         <nav aria-label="Scrapbook">
           <a href="#home">Home</a>
+          <a href="#letter">Letter</a>
           <a href="#photos">Our photos</a>
         </nav>
       </header>
@@ -75,15 +77,7 @@ export function Home({ photos, blackDog, whiteDog, reduceMotion, onReplay }: Hom
           </div>
         </section>
 
-        <motion.article
-          className="love-note"
-          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reduceMotion ? 0 : 0.35, delay: reduceMotion ? 0 : 0.24 }}
-        >
-          <h2>Hi, love.</h2>
-          <p>Kung nami-miss mo ako ngayon, message mo ’ko. Miss din kita.</p>
-        </motion.article>
+        <Letter reduceMotion={reduceMotion} />
 
         <section className="gallery" id="photos" aria-labelledby="photo-title">
           <h2 id="photo-title">Our photos</h2>

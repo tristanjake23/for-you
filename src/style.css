@@ -213,3 +213,86 @@ h1, h2 {
   .gift-stage .cat-peach { left: 1%; }
   .gift-stage .cat-lilac { right: 1%; }
 }
+
+.gift-box {
+  width: min(58vw, 16rem);
+  isolation: isolate;
+}
+
+.gift-halo {
+  position: absolute;
+  z-index: -1;
+  inset: 1% -26% -20%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #ffdcf37a 0, #f6b9ed4d 35%, transparent 68%);
+}
+
+.gift-body {
+  background:
+    repeating-linear-gradient(135deg, #fff0f335 0 2px, transparent 2px 13px),
+    radial-gradient(circle, #fff4fa9c 0 1px, transparent 1.8px) 2px 2px / 17px 17px,
+    linear-gradient(122deg, #ffc8df 0%, #ec87be 52%, #9e3a88 100%);
+  box-shadow: inset 3px 1px 2px #ffeaf3bc, inset -0.85rem -0.3rem 1.2rem #7e246f73, 0 0.95rem 1.5rem #35144885;
+}
+
+.gift-body::before,
+.gift-lid::after {
+  background: linear-gradient(90deg, #7c44b3, #e5bcff 46%, #a96cd3 58%, #663398);
+}
+
+.gift-lid {
+  background:
+    linear-gradient(108deg, transparent 24%, #fff9 39%, transparent 54%),
+    linear-gradient(180deg, #ffe3f1, #f6a4d0 63%, #d273b6);
+}
+
+.gift-heart {
+  width: clamp(1.8rem, 8vw, 2.7rem);
+  background: linear-gradient(145deg, #fff3c4, #eeb97f);
+  box-shadow: inset 0 0 0 2px #fff6ce90, 0 3px 6px #74326a66;
+}
+
+.gift-sparkle {
+  position: absolute;
+  font-size: clamp(1rem, 4vw, 1.65rem);
+  color: #fff0b9;
+  text-shadow: 0 0 0.45rem #ffd2ff;
+}
+
+.gift-sparkle-left { top: 9%; left: 7%; }
+.gift-sparkle-right { top: 15%; right: 4%; }
+
+.gift-burst {
+  position: absolute;
+  z-index: 2;
+  top: 33%;
+  left: 50%;
+}
+
+.gift-burst span {
+  position: absolute;
+  color: #fff0b3;
+  line-height: 1;
+  opacity: 0;
+  text-shadow: 0 0 0.25rem #ff95dd;
+  animation: gift-spark-burst 0.67s ease-out both;
+}
+
+.gift-burst span:nth-child(2n) { color: #ffd6f3; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .gift-sparkle { animation: gift-shimmer 2.8s ease-in-out infinite alternate; }
+  .gift-sparkle-right { animation-delay: -1.2s; }
+  .gift-button[aria-disabled="true"] .gift-sparkle { animation-play-state: paused; }
+}
+
+@keyframes gift-shimmer {
+  from { transform: scale(0.8) rotate(-9deg); opacity: 0.65; }
+  to { transform: scale(1.16) rotate(11deg); opacity: 1; }
+}
+
+@keyframes gift-spark-burst {
+  0% { transform: rotate(var(--burst-angle)) translateX(0) scale(0.5); opacity: 0; }
+  27% { opacity: 1; }
+  100% { transform: rotate(var(--burst-angle)) translateX(var(--burst-distance)) scale(1.25); opacity: 0; }
+}
