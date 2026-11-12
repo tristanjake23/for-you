@@ -133,7 +133,7 @@
   height: clamp(0.8rem, 3vw, 1.35rem);
   background:
     repeating-linear-gradient(90deg, transparent 0 7px, #f2dfbfb5 7px 17px, transparent 17px 28px) center / 100% 38% no-repeat,
-    linear-gradient(90deg, #6a383b, #82484b 50%, #67373b);
+    linear-gradient(90deg, #664061, #9c618d 50%, #613a60);
   box-shadow: 0 0 1rem #67423662;
 }
 
@@ -245,3 +245,29 @@
   from { transform: translate3d(-7px, -10px, 0) rotate(-0.6deg); }
   to { transform: translate3d(8px, 12px, 0) rotate(0.7deg); }
 }
+
+.gift-wallpaper {
+  background-color: transparent;
+  background-image:
+    radial-gradient(ellipse at 13% 20%, #ffe5ee70 0 2px, transparent 4px),
+    radial-gradient(ellipse at 51% 65%, #f1cda77a 0 1px, transparent 3px),
+    radial-gradient(ellipse at 74% 45%, #f4d7ec60 0 2px, transparent 4px),
+    radial-gradient(ellipse at 50% 45%, #ffece83c, #62387645);
+}
+
+.gift-card {
+  border-color: #f9d8e5;
+  background: linear-gradient(142deg, #fff0e5, #f5d9ee 72%, #efcedd);
+  color: #6a3d64;
+  box-shadow: 0.25rem 0.33rem 0 #d19bac, 0.38rem 0.65rem 0 #9f6c9d, 0.56rem 1.25rem 1.7rem #49244074, inset 0 0 0 5px #ffe8e680;
+}
+
+.gift-screen .gift-card h1 em { color: #8c4f81; }
+.gift-card .gift-body {
+  background: repeating-linear-gradient(115deg, #fff0f042 0 2px, transparent 2px 12px), linear-gradient(122deg, #efacc4, #b974aa 64%, #895484);
+}
+.gift-card .gift-lid { background: linear-gradient(180deg, #ffd9e6, #c98dbd 65%, #a867a0); }
+.gift-card .button-label { background: #874e80; border-color: #874e80; }
+.wallpaper-dog { filter: drop-shadow(0 1px 0 #ffe9e1ba) drop-shadow(0 0.25rem 0.26rem #4c285d5e); }
+.wallpaper-sticker.illustrated-sticker, .wallpaper-sticker.botanical { filter: drop-shadow(0 0.2rem 0.18rem #492b4f5e); }
+.cinema-edge { background-color: #78486f; }

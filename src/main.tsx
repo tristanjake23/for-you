@@ -78,7 +78,7 @@ function App() {
   }
 
   function replay() {
-    if (["#home", "#letter", "#photos", "#games"].includes(window.location.hash)) {
+    if (["#home", "#letter", "#photos", "#games", "#little-things"].includes(window.location.hash)) {
       window.history.replaceState(window.history.state, "", window.location.pathname + window.location.search);
     }
     setHasReplayed(true);
@@ -87,7 +87,7 @@ function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-      {stage === "revealed" && <AmbientSky paused={false} />}
+      <AmbientSky paused={isOpening} />
       {backgroundMusic && <audio ref={music} src={backgroundMusic} autoPlay preload="auto" />}
       {stage === "revealed" ? (
         <Home

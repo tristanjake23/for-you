@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useEffect, useRef } from "react";
 import { Bouquet } from "./Bouquet";
 import { Letter } from "./Letter";
+import { LittleThings } from "./LittleThings";
 import { Notebook, type ScrapbookPhoto } from "./Notebook";
 import { FlappyBird } from "./FlappyBird";
 import "./home.css";
@@ -26,7 +27,12 @@ export function Home({ photos, blackDog, whiteDog, reduceMotion, onReplay }: Hom
     : { type: "spring" as const, duration: 0.65, bounce: 0.3 };
 
   return (
-    <div className="scrapbook">
+    <motion.div
+      className="scrapbook"
+      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: reduceMotion ? 0 : 0.3 }}
+    >
       <header className="scrapbook-header">
         <a className="scrapbook-brand" href="#home">For Bembem <span aria-hidden="true">♥</span></a>
         <nav aria-label="Scrapbook">
@@ -41,7 +47,10 @@ export function Home({ photos, blackDog, whiteDog, reduceMotion, onReplay }: Hom
         <section className="scrapbook-hero" aria-labelledby="home-title">
           <div className="hero-copy">
             <h1 id="home-title" ref={heading} tabIndex={-1}>My favorite <em>person.</em></h1>
-            <a className="photo-link" href="#photos">See our photos <span aria-hidden="true">↓</span></a>
+            <div className="hero-actions">
+              <a className="photo-link" href="#photos">See our photos <span aria-hidden="true">↓</span></a>
+              <a className="photo-link photo-link-secondary" href="#little-things">Little things <span aria-hidden="true">↗</span></a>
+            </div>
           </div>
 
           <div className="scrapbook-scene">
@@ -78,6 +87,8 @@ export function Home({ photos, blackDog, whiteDog, reduceMotion, onReplay }: Hom
           </div>
         </section>
 
+        <LittleThings />
+
         <Letter reduceMotion={reduceMotion} />
 
         <Notebook photos={photos} reduceMotion={reduceMotion} />
@@ -88,6 +99,6 @@ export function Home({ photos, blackDog, whiteDog, reduceMotion, onReplay }: Hom
           <button className="replay-button" type="button" onClick={onReplay}>Replay surprise</button>
         </footer>
       </main>
-    </div>
+    </motion.div>
   );
 }

@@ -5,10 +5,10 @@
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(ellipse at 14% 18%, #fd9dd5b8, transparent 42%),
-    radial-gradient(ellipse at 85% 12%, #a3bbffbc, transparent 47%),
-    radial-gradient(ellipse at 64% 96%, #f688c79a, transparent 57%),
-    linear-gradient(145deg, #934db9 1%, #62339c 49%, #421b6b 100%);
+    radial-gradient(ellipse at 13% 13%, #f0a9be 0, transparent 39%),
+    radial-gradient(ellipse at 86% 10%, #bd9cdd 0, transparent 47%),
+    radial-gradient(ellipse at 56% 94%, #9d5d9a 0, transparent 58%),
+    linear-gradient(144deg, #ac74a8 0%, #71477d 55%, #492a65 100%);
 }
 
 .sky-cloud {
@@ -47,23 +47,6 @@
   animation-delay: -16s;
 }
 
-.sky-sticker-layer {
-  position: absolute;
-  inset: 0;
-  animation: sticker-drift 9s ease-in-out infinite alternate;
-}
-
-.sky-sticker-layer:nth-of-type(2) {
-  animation-duration: 12s;
-  animation-delay: -5s;
-  animation-direction: alternate-reverse;
-}
-
-.sky-sticker-layer:nth-of-type(3) {
-  animation-duration: 15s;
-  animation-delay: -7s;
-}
-
 .sky-sticker {
   position: absolute;
   font-size: clamp(0.8rem, calc(var(--sticker-size) * 0.68 + 0.4vw), var(--sticker-size));
@@ -77,11 +60,6 @@
 @keyframes cloud-drift {
   from { transform: translate3d(-2vw, 0, 0); }
   to { transform: translate3d(10vw, -1.5vh, 0); }
-}
-
-@keyframes sticker-drift {
-  from { transform: translate3d(-4px, 5px, 0) rotate(-1deg); }
-  to { transform: translate3d(8px, -13px, 0) rotate(2deg); }
 }
 
 .ambient-sky.is-paused > * {
@@ -99,11 +77,6 @@
   }
 }
 
-.sky-sticker-layer:nth-of-type(4) {
-  animation-duration: 13s;
-  animation-delay: -9s;
-}
-
 .sky-sticker.paper-icon {
   position: absolute;
   font-size: clamp(0.8rem, calc(var(--sticker-size) * 0.68 + 0.4vw), var(--sticker-size));
@@ -115,3 +88,44 @@
 .sky-gold { --icon-color: #edc489; }
 .sky-ice { --icon-color: #b6dbea; }
 .sky-peach { --icon-color: #e5af9e; }
+
+
+
+.sky-sticker-layer {
+  position: absolute;
+  inset: -100% 0 auto;
+  height: 200%;
+  animation: paper-fall var(--fall-time, 20s) linear var(--fall-offset, -8s) infinite;
+}
+
+.sky-sticker-layer:nth-of-type(2) { --fall-time: 24s; --fall-offset: -18s; }
+.sky-sticker-layer:nth-of-type(3) { --fall-time: 17s; --fall-offset: -9s; }
+.sky-sticker-layer:nth-of-type(4) { --fall-time: 27s; --fall-offset: -14s; }
+
+.sky-sticker-panel {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 50%;
+}
+
+.sky-sticker-panel + .sky-sticker-panel { top: 50%; }
+.ambient-sky.is-paused .sky-sticker-layer { animation-play-state: paused; }
+
+@keyframes paper-fall {
+  0% { transform: translate3d(-3px, 0, 0); }
+  33% { transform: translate3d(8px, 16.666%, 0); }
+  67% { transform: translate3d(-6px, 33.333%, 0); }
+  100% { transform: translate3d(-3px, 50%, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sky-sticker-layer:nth-of-type(n) { animation: none; }
+}
+
+.sky-phosphor {
+  background: url("./assets/sky-icons.webp") var(--sky-art-x, 0%) 0 / 400% 100% no-repeat;
+}
+
+.sky-phosphor-bloom { --sky-art-x: 33.333333%; }
+.sky-phosphor-moon { --sky-art-x: 66.666667%; }
+.sky-phosphor-diamond { --sky-art-x: 100%; }

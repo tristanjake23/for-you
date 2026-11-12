@@ -1,0 +1,83 @@
+.little-things {
+  width: min(100%, 57rem);
+  margin: 0 auto clamp(4rem, 10vw, 7rem);
+  scroll-margin-top: 1.2rem;
+}
+
+.little-things h2 {
+  margin-bottom: 1rem;
+  color: #fff0e9;
+  text-align: center;
+  font: italic clamp(2rem, 7vw, 3.65rem) / 1.04 Georgia, serif;
+  letter-spacing: -0.045em;
+  text-shadow: 0 0.14rem 0 #8d487969;
+}
+
+.little-note-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(0.8rem, 2.5vw, 1.3rem);
+}
+
+.little-note {
+  --note-surface: #f7dfda;
+  --note-edge: #c88b98;
+  --icon-color: #dd7d9b;
+  position: relative;
+  color: #5b3153;
+  border: 1px solid #fff0e1;
+  border-radius: 0.6rem;
+  background:
+    repeating-linear-gradient(90deg, #a9677c0a 0 1px, transparent 1px 4px),
+    linear-gradient(145deg, #fff4e6, var(--note-surface));
+  box-shadow: inset 0 0 0 0.2rem #fff9eb77, 0 0.28rem 0 var(--note-edge), 0 0.65rem 1rem #32184063;
+}
+
+.little-note:nth-child(2) {
+  --note-surface: #eedcf9;
+  --note-edge: #9d75b6;
+  --icon-color: #bf95e0;
+}
+
+.little-note:nth-child(3) {
+  --note-surface: #f6e2cc;
+  --note-edge: #b9898a;
+  --icon-color: #e0ab69;
+}
+
+.little-note summary {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 3.25rem;
+  padding: 0.6rem 0.9rem;
+  list-style: none;
+  font: 700 1rem Georgia, serif;
+  cursor: pointer;
+}
+
+.little-note summary::-webkit-details-marker { display: none; }
+
+.little-note summary::after {
+  content: "";
+  width: 0.38rem;
+  height: 0.38rem;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+  transform: rotate(45deg) translateY(-2px);
+}
+
+.little-note[open] summary::after { transform: rotate(225deg) translate(-1px, -1px); }
+.little-note summary .paper-icon { font-size: 1.35rem; }
+.little-note p { margin: 0 0.9rem 0.85rem; padding-top: 0.55rem; border-top: 1px dashed #986d8a66; font-size: 0.9rem; line-height: 1.55; }
+
+@media (max-width: 600px) {
+  .little-note-grid { grid-template-columns: 1fr; }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .little-note { transition: transform 220ms ease-out; }
+  .little-note:hover { transform: perspective(600px) translateY(-3px) rotateX(4deg); }
+}

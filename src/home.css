@@ -452,3 +452,28 @@
 .sticker-lilac-flower, .sticker-outline-heart { --icon-color: #bc9ce3; }
 
 .sticker.paper-icon { position: absolute; }
+
+.scrapbook-header {
+  position: relative;
+  margin: 0.8rem 0 0;
+  padding-inline: clamp(0.65rem, 2vw, 1.35rem);
+  border: 1px solid #f2cde356;
+  border-radius: 0.75rem;
+  background: linear-gradient(155deg, #8c5b91e3, #603c76dc);
+  box-shadow: 0 0.25rem 0 #503261, 0 0.72rem 1.2rem #4b2c6470;
+}
+
+.scrapbook-hero { margin-bottom: 1rem; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.photo-link { box-shadow: 0 0.22rem 0 #442758, 0 0.38rem 0.65rem #472a5f80; }
+.photo-link-secondary { background: #885683; }
+
+.scrapbook-scene::before {
+  background:
+    radial-gradient(ellipse at 50% 83%, #fae0db79, transparent 58%),
+    radial-gradient(ellipse at 50% 46%, #d4a6ce89 0 27%, #6e477f6e 57%, transparent 72%);
+}
+
+@media (max-width: 660px) {
+  .hero-actions { justify-content: center; }
+}

@@ -2,6 +2,8 @@ import type { CSSProperties } from "react";
 import "./ambient-sky.css";
 import "./paper-icons.css";
 
+const phosphorKinds = new Set(["butterfly", "bloom", "moon", "diamond"]);
+
 const stickerGroups = [
   [
     { kind: "heart", x: 8, y: 20, color: "pink", size: 42, angle: -18 },
@@ -54,17 +56,21 @@ export function AmbientSky({ paused }: { paused: boolean }) {
       <span className="sky-cloud cloud-low" />
       {stickerGroups.map((group, index) => (
         <div className="sky-sticker-layer" key={index}>
-          {group.map(({ kind, x, y, color, size, angle }) => (
-            <span
-              key={x}
-              className={`sky-sticker sky-${color} paper-icon paper-icon-${kind}`}
-              style={{
-                left: `${x}%`,
-                top: `${y}%`,
-                "--sticker-size": `${size}px`,
-                "--sticker-angle": `${angle}deg`,
-              } as CSSProperties}
-            />
+          {[0, 1].map((repeat) => (
+            <div className="sky-sticker-panel" key={repeat}>
+              {group.map(({ kind, x, y, color, size, angle }) => (
+                <span
+                  key={x}
+                  className={`sky-sticker sky-${color} paper-icon ${phosphorKinds.has(kind) ? `sky-phosphor sky-phosphor-${kind}` : `paper-icon-${kind}`}`}
+                  style={{
+                    left: `${x}%`,
+                    top: `${y}%`,
+                    "--sticker-size": `${size}px`,
+                    "--sticker-angle": `${angle}deg`,
+                  } as CSSProperties}
+                />
+              ))}
+            </div>
           ))}
         </div>
       ))}
