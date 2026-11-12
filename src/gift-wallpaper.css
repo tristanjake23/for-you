@@ -162,3 +162,10 @@
   background: radial-gradient(ellipse at center, transparent 42%, #9363532b);
   pointer-events: none;
 }
+
+.wallpaper-dog {
+  display: block;
+  aspect-ratio: 1;
+  object-fit: contain;
+  filter: drop-shadow(0 0.15rem 0.25rem #704b4438);
+}

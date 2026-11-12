@@ -1,10 +1,15 @@
 import type { CSSProperties } from "react";
+import blackDog from "./assets/black-dog.webp";
+import whiteDog from "./assets/white-dog.webp";
+import dogFace from "./assets/flappy-dog.webp";
 import "./gift-wallpaper.css";
 
+const dogImages: Partial<Record<string, string>> = { blackDog, whiteDog, dogFace };
+
 const illustrations = [
-  ["tabby", 2, 17, 16, -22], ["calico", 22, 22, 13, 12], ["gray", 51, 3, 14, 7],
-  ["cream", 76, 18, 15, -14], ["dark", 96, 48, 14, -23], ["dark", 32, 86, 16, 14],
-  ["cream", 61, 94, 17, -14], ["calico", 84, 85, 15, 15], ["tabby", 7, 77, 13, 19],
+  ["blackDog", 2, 17, 16, -22], ["whiteDog", 22, 22, 13, 12], ["dogFace", 51, 3, 14, 7],
+  ["whiteDog", 76, 18, 15, -14], ["blackDog", 96, 48, 14, -23], ["blackDog", 32, 86, 16, 14],
+  ["whiteDog", 61, 94, 17, -14], ["whiteDog", 84, 85, 15, 15], ["blackDog", 7, 77, 13, 19],
   ["pot", 9, 41, 8, -16], ["pot", 66, 20, 7, 10], ["pot", 78, 61, 8, 10],
   ["pot", 18, 97, 8, 19], ["pot", 46, 64, 6, -15], ["pot", 9, 5, 7, -9],
   ["flowers", 34, 7, 8, -20], ["flowers", 32, 49, 8, 21], ["flowers", 87, 8, 8, 14],
@@ -24,14 +29,22 @@ export function GiftWallpaper({ paused }: { paused: boolean }) {
     <div className={paused ? "gift-wallpaper wallpaper-paused" : "gift-wallpaper"} aria-hidden="true">
       {[0, 1, 2].map((layer) => (
         <div className="wallpaper-layer" key={layer}>
-          {illustrations.map(([kind, x, y, size, tilt], index) => index % 3 === layer && (
-            <span key={index} className={`wallpaper-sticker illustrated-sticker art-${kind}`} style={{
+          {illustrations.map(([kind, x, y, size, tilt], index) => {
+            if (index % 3 !== layer) return null;
+
+            const style = {
               "--sticker-x": `${x}%`,
               "--sticker-y": `${y}%`,
               "--sticker-width": `${size}vw`,
               "--sticker-tilt": `${tilt}deg`,
-            } as CSSProperties} />
-          ))}
+            } as CSSProperties;
+            const dogImage = dogImages[kind];
+            return dogImage ? (
+              <img key={index} className="wallpaper-sticker wallpaper-dog" src={dogImage} alt="" style={style} />
+            ) : (
+              <span key={index} className={`wallpaper-sticker illustrated-sticker art-${kind}`} style={style} />
+            );
+          })}
         </div>
       ))}
       <span className="wallpaper-heart wallpaper-heart-one" />
