@@ -23,10 +23,18 @@ const photos = Object.keys(photoFiles).sort().map((path, index) => ({
   label: `Memory ${index + 1}`,
 }));
 
+const musicFiles = import.meta.glob<string>("./assets/music/*.mp3", {
+  eager: true,
+  import: "default",
+  query: "?url",
+});
+const backgroundMusic = musicFiles["./assets/music/background.mp3"];
+
 function App() {
   const [stage, setStage] = useState<RevealStage>("closed");
   const [hasReplayed, setHasReplayed] = useState(false);
   const giftButton = useRef<HTMLButtonElement>(null);
+  const music = useRef<HTMLAudioElement>(null);
   const reduceMotion = useReducedMotion() ?? false;
   const isOpening = stage === "opening" || stage === "blooming";
 
@@ -41,6 +49,17 @@ function App() {
     }
   }, [stage, hasReplayed]);
 
+  function openGift() {
+    if (stage !== "closed") return;
+
+    // Retry within the tap if the browser blocked playback on page load.
+    const player = music.current;
+    if (player?.paused && !player.ended) {
+      void player.play().catch(() => {});
+    }
+    setStage(reduceMotion ? "revealed" : "opening");
+  }
+
   function replay() {
     if (window.location.hash === "#home" || window.location.hash === "#photos") {
       window.history.replaceState(window.history.state, "", window.location.pathname + window.location.search);
@@ -52,6 +71,7 @@ function App() {
   return (
     <MotionConfig reducedMotion="user">
       <AmbientSky paused={isOpening} />
+      {backgroundMusic && <audio ref={music} src={backgroundMusic} autoPlay preload="auto" />}
       {stage === "revealed" ? (
         <Home
           photos={photos}
@@ -69,9 +89,7 @@ function App() {
               type="button"
               ref={giftButton}
               aria-disabled={isOpening}
-              onClick={() => {
-                if (stage === "closed") setStage(reduceMotion ? "revealed" : "opening");
-              }}
+              onClick={openGift}
             >
               <span className="gift-box" aria-hidden="true">
                 <span className="gift-body"><span className="gift-heart">♥</span></span>
