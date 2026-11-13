@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import dogSprite from "./assets/flappy-dog.webp";
+import FlappySecret from "./bembem-extras/FlappySecret";
 import "./flappy.css";
 
 const width = 360;
@@ -181,7 +182,7 @@ export function FlappyBird() {
 
   return (
     <section className="flappy-section" id="games" aria-labelledby="flappy-title">
-      <h2 id="flappy-title">Flappy Bird</h2>
+      <h2 id="flappy-title">Flappy Bimbi</h2>
       <div className="flappy-frame">
         <div className="flappy-score"><span>Score <b>{score}</b></span><span>Best <b>{best}</b></span></div>
         <div className="flappy-field">
@@ -200,11 +201,12 @@ export function FlappyBird() {
           ) : (
             <div className="flappy-overlay">
               {phase === "finished" && <p role="status">Score {score} · Best {best}</p>}
-              <button type="button" ref={startButton} onClick={start}>{phase === "ready" ? "Start flying" : "Fly again"}</button>
+              <button type="button" ref={startButton} onClick={start}>{phase === "Ready na kaw" ? "Lipadd na" : "Fly again"}</button>
             </div>
           )}
         </div>
         <p>Tap the sky or press Space / ↑ to flap.</p>
+        {phase !== "playing" && <FlappySecret score={score} /> }
       </div>
     </section>
   );
