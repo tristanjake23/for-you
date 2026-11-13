@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import dogSprite from "./assets/flappy-dog.webp";
-import FlappySecret from "./bembem-extras/FlappySecret";
+import FlappySecret from "./src/FlappySecret";
 import "./flappy.css";
 
 const width = 360;
