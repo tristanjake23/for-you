@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { flappySecret, signature } from "./content";
-import "./extras.css";
+import "./flappy.css";
 
 const UNLOCK_KEY = "bembem:flappy-secret";
 
