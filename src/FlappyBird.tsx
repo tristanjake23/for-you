@@ -201,7 +201,7 @@ export function FlappyBird() {
           ) : (
             <div className="flappy-overlay">
               {phase === "finished" && <p role="status">Score {score} · Best {best}</p>}
-              <button type="button" ref={startButton} onClick={start}>{phase === "ready" ? "Lipadd na" : "Fly again"}</button>
+              <button type="button" ref={startButton} onClick={start}>{phase === "ready" ? "Lipadd na" : "AHHAHAHA DEDSS"}</button>
             </div>
           )}
         </div>
