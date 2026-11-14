@@ -101,7 +101,6 @@ function App() {
         <main className="gift-screen" onPointerMove={tiltGift} onPointerLeave={resetGiftTilt}>
           <GiftWallpaper paused={isOpening} />
           <motion.div className="gift-card" style={{ rotateX: cardTiltX, rotateY: cardTiltY }}>
-            <h1>For you, <em>love.</em></h1>
             <div className="gift-stage">
               <button
                 className="gift-button"
@@ -146,7 +145,7 @@ function App() {
                     <span className="gift-bow"><i /><b /></span>
                   </motion.span>
                 </span>
-                <span className="button-label">{isOpening ? "Opening…" : "Open your gift"}</span>
+                <span className="button-label">{isOpening ? "Opening…" : "Open it :>"}</span>
               </button>
             </div>
           </motion.div>
